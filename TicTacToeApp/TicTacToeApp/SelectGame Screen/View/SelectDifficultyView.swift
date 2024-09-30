@@ -1,15 +1,15 @@
-
 //
-//  SelectGameView.swift
+//  SelectDifficultyView.swift
 //  TicTacToeApp
 //
 //  Created by salfetkafive on 30.09.2024.
 //
 
+
 import UIKit
 
-
-class SelectGameView: UIView {
+class SelectDifficultyView: UIView {
+     
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -27,10 +27,10 @@ class SelectGameView: UIView {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
-     lazy var singlePlayerButton = UIButton.createButton(icon: "SinglePlayer", title: "Single Player")
-     lazy var twoPlayersButton = UIButton.createButton(icon: "TwoPlayers", title: "Two Players")
-     lazy var leaderboardButton = UIButton.createButton(icon: "LeaderBoard", title: "Leaderboard")
+   
+    lazy var hardDiffucultyButton = UIButton.createButton(title: "Hard")
+    lazy var standartDiffucultyButton = UIButton.createButton(title: "Standard")
+    lazy var easyDiffucultyButton = UIButton.createButton(title: "Easy")
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,9 +52,9 @@ class SelectGameView: UIView {
         addSubview(titleLabel)
         addSubview(stackView)
         
-        stackView.addArrangedSubview(singlePlayerButton)
-        stackView.addArrangedSubview(twoPlayersButton)
-        stackView.addArrangedSubview(leaderboardButton)
+        stackView.addArrangedSubview(hardDiffucultyButton)
+        stackView.addArrangedSubview(standartDiffucultyButton)
+        stackView.addArrangedSubview(easyDiffucultyButton)
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
@@ -68,7 +68,15 @@ class SelectGameView: UIView {
         ])
     }
     
-
     
-   
+     
 }
+
+
+
+#Preview {
+    SelectDifficultyView()
+}
+
+
+
