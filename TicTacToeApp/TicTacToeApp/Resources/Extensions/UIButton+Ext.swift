@@ -54,7 +54,7 @@ extension UIButton {
         config.attributedTitle = AttributedString(title, attributes: AttributeContainer([.font: font]))
 
         // Настройка изображения
-        if let image = UIImage(named: icon) {
+        if !icon.isEmpty,  let image = UIImage(named: icon) {
             config.image = image
             config.imagePadding = imagePadding // Расстояние между текстом и иконкой
             config.imagePlacement = imagePlacement // Положение иконки
