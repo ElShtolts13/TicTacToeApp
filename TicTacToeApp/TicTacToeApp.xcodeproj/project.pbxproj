@@ -11,6 +11,7 @@
 		42DB25BF2CAA7FFF00D90C1A /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB25BE2CAA7FFF00D90C1A /* UIButton+Ext.swift */; };
 		42DB25C12CAA800900D90C1A /* SelectDifficultyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB25C02CAA800900D90C1A /* SelectDifficultyView.swift */; };
 		42DB25C32CAA84CE00D90C1A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB25C22CAA84CE00D90C1A /* Model.swift */; };
+		896F63EB2CAAEB6F00814739 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896F63EA2CAAEB6F00814739 /* CustomNavigationController.swift */; };
 		DEC80E502CA9F013002F637E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E4F2CA9F013002F637E /* AppDelegate.swift */; };
 		DEC80E522CA9F013002F637E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E512CA9F013002F637E /* SceneDelegate.swift */; };
 		DEC80E542CA9F013002F637E /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E532CA9F013002F637E /* OnboardingVC.swift */; };
@@ -29,6 +30,7 @@
 		42DB25BE2CAA7FFF00D90C1A /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
 		42DB25C02CAA800900D90C1A /* SelectDifficultyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDifficultyView.swift; sourceTree = "<group>"; };
 		42DB25C22CAA84CE00D90C1A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		896F63EA2CAAEB6F00814739 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		DEC80E4C2CA9F013002F637E /* TicTacToeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEC80E4F2CA9F013002F637E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEC80E512CA9F013002F637E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			children = (
 				DEC80E4F2CA9F013002F637E /* AppDelegate.swift */,
 				DEC80E512CA9F013002F637E /* SceneDelegate.swift */,
+				896F63EA2CAAEB6F00814739 /* CustomNavigationController.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				42DB25C32CAA84CE00D90C1A /* Model.swift in Sources */,
 				DEC80E542CA9F013002F637E /* OnboardingVC.swift in Sources */,
 				DEC80E502CA9F013002F637E /* AppDelegate.swift in Sources */,
+				896F63EB2CAAEB6F00814739 /* CustomNavigationController.swift in Sources */,
 				DEC80E712CA9F361002F637E /* HowtoPlayVC.swift in Sources */,
 				42DB25BF2CAA7FFF00D90C1A /* UIButton+Ext.swift in Sources */,
 				DEC80E752CA9F47B002F637E /* LeaderBoardVC.swift in Sources */,
