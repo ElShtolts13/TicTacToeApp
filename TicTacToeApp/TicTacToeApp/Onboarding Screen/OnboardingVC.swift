@@ -8,12 +8,10 @@
 import UIKit
 
 class OnboardingVC: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = AppColors.background
+        
     }
-
-
 }
-
