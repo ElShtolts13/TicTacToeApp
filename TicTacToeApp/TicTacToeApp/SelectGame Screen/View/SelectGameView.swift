@@ -1,3 +1,12 @@
+//
+//  SelectGameView.swift
+//  TicTacToeApp
+//
+//  Created by salfetkafive on 30.09.2024.
+//
+
+import UIKit
+
 class SelectGameView: UIView {
     
     private let titleLabel: UILabel = {
