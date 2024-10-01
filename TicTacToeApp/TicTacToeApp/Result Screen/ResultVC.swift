@@ -17,6 +17,20 @@ class ResultVC: UIViewController {
     
     //MARK: - Private properties
     
+    private let playButton = UIButton.createButton(
+        title: "Play again",
+        foregroundColor: .white,
+        backgroundColor: AppColors.basicBlue,
+        buttonHeight: 72
+    )
+    
+    private let backButton = UIButton.createButton(
+        title: "Back",
+        buttonHeight: 72,
+        borderColor: AppColors.basicBlue,
+        borderWidth: 2
+    )
+    
     private let labelResultGame: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 20)
@@ -43,7 +57,7 @@ class ResultVC: UIViewController {
     // MARK: - Private methods
     // создаем экран в зависимости от входящего результата inputResault
     private func createView() {
-        view.backgroundColor = .white
+        view.backgroundColor = AppColors.background
         view.addSubview(labelResultGame)
         view.addSubview(imageResultGame)
         view.addSubview(stackButton)
@@ -57,7 +71,10 @@ class ResultVC: UIViewController {
                     imageResultGame.image = ResaultImage.draw
         default: break
         }
+        
         createStackButton()
+        playButton.addTarget(self, action: #selector(playButtonTaped), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(backButtonTaped), for: .touchUpInside)
     }
     
     // создаем стэк с кнопками
@@ -65,10 +82,12 @@ class ResultVC: UIViewController {
         stackButton.translatesAutoresizingMaskIntoConstraints = false
         stackButton.axis = .vertical
         stackButton.spacing = 12
-        stackButton.alignment = .fill
-        stackButton.distribution = .fillEqually
-        stackButton.addArrangedSubview(createButton(name: "Play again"))
-        stackButton.addArrangedSubview(createButton(name: "Back"))
+//        stackButton.alignment = .fill
+//        stackButton.distribution = .fillEqually
+//        stackButton.addArrangedSubview(createButton(name: "Play again"))
+//        stackButton.addArrangedSubview(createButton(name: "Back"))
+        stackButton.addArrangedSubview(playButton)
+        stackButton.addArrangedSubview(backButton)
     }
     
     // настраиваем размещение объектов на экране
@@ -81,10 +100,10 @@ class ResultVC: UIViewController {
             labelResultGame.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             labelResultGame.bottomAnchor.constraint(equalTo: imageResultGame.topAnchor, constant: -20),
             
-            stackButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            stackButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            stackButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            stackButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -156 + -20)
+            stackButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 21),
+            stackButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -21),
+            stackButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -31),
+            stackButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -156 + -31)
             
         
         ])
@@ -125,6 +144,16 @@ extension ResultVC {
     
     // обработка действия кнопки
     @objc private func buttonTaped(_ sender: UIButton) {
+        print("User tap \(String(describing: sender.currentTitle))")
+        //  переход в зависимости от выбора пользователя
+    }
+    
+    @objc private func playButtonTaped(_ sender: UIButton) {
+        print("User tap \(String(describing: sender.currentTitle))")
+        //  переход в зависимости от выбора пользователя
+    }
+    
+    @objc private func backButtonTaped(_ sender: UIButton) {
         print("User tap \(String(describing: sender.currentTitle))")
         //  переход в зависимости от выбора пользователя
     }
