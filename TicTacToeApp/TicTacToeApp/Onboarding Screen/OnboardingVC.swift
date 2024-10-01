@@ -9,8 +9,9 @@ import UIKit
 
 class OnboardingVC: UIViewController {
     
+    // MARK: - Private properties
     
-    let xoImage = UIImageView(image: UIImage(named: "XO"))
+    private let xoImage = UIImageView(image: UIImage(named: "XO"))
     
     private let settingButton: UIButton = {
         let button = UIButton()
@@ -35,8 +36,8 @@ class OnboardingVC: UIViewController {
         return label
     }()
     
-    let playButton = UIButton.createButton(title:"Let's play",
-                                           foregroundColor: .white, 
+    private let playButton = UIButton.createButton(title:"Let's play",
+                                           foregroundColor: .white,
                                            backgroundColor: AppColors.basicBlue)
    
     
@@ -47,18 +48,18 @@ class OnboardingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        view.addSubview(settingButton)
-        view.addSubview(rulesButton)
-        view.addSubview(xoImage)
-        view.addSubview(nameGameLabel)
-        view.addSubview(playButton)
-        
         setupView()
     }
     
     
     
     func setupView() {
+        
+        view.addSubview(settingButton)
+        view.addSubview(rulesButton)
+        view.addSubview(xoImage)
+        view.addSubview(nameGameLabel)
+        view.addSubview(playButton)
         
         playButton.translatesAutoresizingMaskIntoConstraints = false
         xoImage.translatesAutoresizingMaskIntoConstraints = false
@@ -84,4 +85,6 @@ class OnboardingVC: UIViewController {
 
         ])
     }
+    
+    // MARK: - Actions
 }
