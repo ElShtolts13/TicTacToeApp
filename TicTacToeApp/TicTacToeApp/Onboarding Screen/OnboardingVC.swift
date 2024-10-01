@@ -11,6 +11,9 @@ class OnboardingVC: UIViewController {
     
     // MARK: - Private properties
     
+    var settingVC: SettingVC?
+    var rulesVC: HowToPlayVC?
+    
     private let xoImage = UIImageView(image: UIImage(named: "XO"))
     
     private let settingButton: UIButton = {
@@ -48,7 +51,13 @@ class OnboardingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
         setupView()
+        
+        rulesButton.addTarget(self, action: #selector(pressedRulesButton), for: .touchUpInside)
+        settingButton.addTarget(self, action: #selector(pressedSettingButton), for: .touchUpInside)
+        playButton.addTarget(self, action: #selector(pressedPlayButton), for: .touchUpInside)
+        
     }
     
     
@@ -87,4 +96,17 @@ class OnboardingVC: UIViewController {
     }
     
     // MARK: - Actions
+    
+    @objc private func pressedRulesButton() {
+        print("RulesButton was pressed")
+        
+    }
+    @objc private func pressedSettingButton() {
+        print("SettingButton was pressed")
+        
+    }
+    @objc private func pressedPlayButton() {
+        print("PlayButton was pressed")
+        
+    }
 }
