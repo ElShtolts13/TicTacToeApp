@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F23EC652CAB380900B161E1 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F23EC642CAB37E100B161E1 /* CellView.swift */; };
+		0F23EC672CAC50F700B161E1 /* ConstantAppString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F23EC662CAC50E900B161E1 /* ConstantAppString.swift */; };
 		4254678F2CAA93D600EDC2E8 /* SelectGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4254678E2CAA93D600EDC2E8 /* SelectGameView.swift */; };
 		42DB25BF2CAA7FFF00D90C1A /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB25BE2CAA7FFF00D90C1A /* UIButton+Ext.swift */; };
 		42DB25C12CAA800900D90C1A /* SelectDifficultyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB25C02CAA800900D90C1A /* SelectDifficultyView.swift */; };
@@ -23,11 +25,13 @@
 		DEC80E692CA9F245002F637E /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E682CA9F245002F637E /* ResultVC.swift */; };
 		DEC80E6C2CA9F298002F637E /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E6B2CA9F298002F637E /* SettingVC.swift */; };
 		DEC80E6E2CA9F2FD002F637E /* SelectGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E6D2CA9F2FD002F637E /* SelectGameVC.swift */; };
-		DEC80E712CA9F361002F637E /* HowtoPlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E702CA9F361002F637E /* HowtoPlayVC.swift */; };
+		DEC80E712CA9F361002F637E /* HowToPlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E702CA9F361002F637E /* HowToPlayVC.swift */; };
 		DEC80E752CA9F47B002F637E /* LeaderBoardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E742CA9F47B002F637E /* LeaderBoardVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F23EC642CAB37E100B161E1 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		0F23EC662CAC50E900B161E1 /* ConstantAppString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantAppString.swift; sourceTree = "<group>"; };
 		4254678E2CAA93D600EDC2E8 /* SelectGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGameView.swift; sourceTree = "<group>"; };
 		42DB25BE2CAA7FFF00D90C1A /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
 		42DB25C02CAA800900D90C1A /* SelectDifficultyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDifficultyView.swift; sourceTree = "<group>"; };
@@ -46,7 +50,7 @@
 		DEC80E682CA9F245002F637E /* ResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
 		DEC80E6B2CA9F298002F637E /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		DEC80E6D2CA9F2FD002F637E /* SelectGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGameVC.swift; sourceTree = "<group>"; };
-		DEC80E702CA9F361002F637E /* HowtoPlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowtoPlayVC.swift; sourceTree = "<group>"; };
+		DEC80E702CA9F361002F637E /* HowToPlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayVC.swift; sourceTree = "<group>"; };
 		DEC80E742CA9F47B002F637E /* LeaderBoardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,7 +68,6 @@
 		42DB25BA2CAA7FB900D90C1A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				DEC80E6D2CA9F2FD002F637E /* SelectGameVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -174,7 +177,8 @@
 		DEC80E722CA9F370002F637E /* How to play Screen */ = {
 			isa = PBXGroup;
 			children = (
-				DEC80E702CA9F361002F637E /* HowtoPlayVC.swift */,
+				DEC80E702CA9F361002F637E /* HowToPlayVC.swift */,
+				0F23EC642CAB37E100B161E1 /* CellView.swift */,
 			);
 			path = "How to play Screen";
 			sourceTree = "<group>";
@@ -191,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				DE8429AE2CAAED1A00A74C13 /* AppColors.swift */,
+				0F23EC662CAC50E900B161E1 /* ConstantAppString.swift */,
 				42DB25BD2CAA7FEA00D90C1A /* Extensions */,
 				DEC80E5A2CA9F014002F637E /* LaunchScreen.storyboard */,
 				DEC80E582CA9F014002F637E /* Assets.xcassets */,
@@ -280,13 +285,15 @@
 			files = (
 				DEC80E692CA9F245002F637E /* ResultVC.swift in Sources */,
 				DEC80E6C2CA9F298002F637E /* SettingVC.swift in Sources */,
+				0F23EC672CAC50F700B161E1 /* ConstantAppString.swift in Sources */,
 				42DB25C12CAA800900D90C1A /* SelectDifficultyView.swift in Sources */,
 				DE8429AF2CAAED1A00A74C13 /* AppColors.swift in Sources */,
 				42DB25C32CAA84CE00D90C1A /* Model.swift in Sources */,
 				DEC80E542CA9F013002F637E /* OnboardingVC.swift in Sources */,
 				DEC80E502CA9F013002F637E /* AppDelegate.swift in Sources */,
+				0F23EC652CAB380900B161E1 /* CellView.swift in Sources */,
 				896F63EB2CAAEB6F00814739 /* CustomNavigationController.swift in Sources */,
-				DEC80E712CA9F361002F637E /* HowtoPlayVC.swift in Sources */,
+				DEC80E712CA9F361002F637E /* HowToPlayVC.swift in Sources */,
 				42DB25BF2CAA7FFF00D90C1A /* UIButton+Ext.swift in Sources */,
 				DEC80E752CA9F47B002F637E /* LeaderBoardVC.swift in Sources */,
 				DE8429AD2CAAEC6B00A74C13 /* UIColor + Ext.swift in Sources */,
