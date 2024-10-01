@@ -38,7 +38,7 @@ class OnboardingVC: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+  
     private let playButton = UIButton.createButton(title:"Let's play",
                                            foregroundColor: .white,
                                            backgroundColor: AppColors.basicBlue)
@@ -50,6 +50,7 @@ class OnboardingVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = .white
         
         setupView()
@@ -58,6 +59,7 @@ class OnboardingVC: UIViewController {
         settingButton.addTarget(self, action: #selector(pressedSettingButton), for: .touchUpInside)
         playButton.addTarget(self, action: #selector(pressedPlayButton), for: .touchUpInside)
         
+
     }
     
     

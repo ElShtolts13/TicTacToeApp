@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+
 		0F23EC652CAB380900B161E1 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F23EC642CAB37E100B161E1 /* CellView.swift */; };
 		0F23EC672CAC50F700B161E1 /* ConstantAppString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F23EC662CAC50E900B161E1 /* ConstantAppString.swift */; };
+
 		4254678F2CAA93D600EDC2E8 /* SelectGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4254678E2CAA93D600EDC2E8 /* SelectGameView.swift */; };
 		42DB25BF2CAA7FFF00D90C1A /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB25BE2CAA7FFF00D90C1A /* UIButton+Ext.swift */; };
 		42DB25C12CAA800900D90C1A /* SelectDifficultyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB25C02CAA800900D90C1A /* SelectDifficultyView.swift */; };
 		42DB25C32CAA84CE00D90C1A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB25C22CAA84CE00D90C1A /* Model.swift */; };
+
 		896F63EB2CAAEB6F00814739 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896F63EA2CAAEB6F00814739 /* CustomNavigationController.swift */; };
 		DE8429AD2CAAEC6B00A74C13 /* UIColor + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8429AC2CAAEC6B00A74C13 /* UIColor + Ext.swift */; };
 		DE8429AF2CAAED1A00A74C13 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8429AE2CAAED1A00A74C13 /* AppColors.swift */; };
@@ -21,6 +24,7 @@
 		DE8429BA2CAB318A00A74C13 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE8429B62CAB318A00A74C13 /* SF-Pro-Display-Semibold.otf */; };
 		DE8429BB2CAB318A00A74C13 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE8429B72CAB318A00A74C13 /* SF-Pro-Display-Medium.otf */; };
 		DE8429BD2CAB32B900A74C13 /* UIFont + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8429BC2CAB32B900A74C13 /* UIFont + Ext.swift */; };
+
 		DEC80E502CA9F013002F637E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E4F2CA9F013002F637E /* AppDelegate.swift */; };
 		DEC80E522CA9F013002F637E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E512CA9F013002F637E /* SceneDelegate.swift */; };
 		DEC80E542CA9F013002F637E /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E532CA9F013002F637E /* OnboardingVC.swift */; };
@@ -35,12 +39,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+
 		0F23EC642CAB37E100B161E1 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		0F23EC662CAC50E900B161E1 /* ConstantAppString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantAppString.swift; sourceTree = "<group>"; };
+
 		4254678E2CAA93D600EDC2E8 /* SelectGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGameView.swift; sourceTree = "<group>"; };
 		42DB25BE2CAA7FFF00D90C1A /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
 		42DB25C02CAA800900D90C1A /* SelectDifficultyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDifficultyView.swift; sourceTree = "<group>"; };
 		42DB25C22CAA84CE00D90C1A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+
 		896F63EA2CAAEB6F00814739 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		DE8429AC2CAAEC6B00A74C13 /* UIColor + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Ext.swift"; sourceTree = "<group>"; };
 		DE8429AE2CAAED1A00A74C13 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -49,6 +56,7 @@
 		DE8429B62CAB318A00A74C13 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
 		DE8429B72CAB318A00A74C13 /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
 		DE8429BC2CAB32B900A74C13 /* UIFont + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Ext.swift"; sourceTree = "<group>"; };
+
 		DEC80E4C2CA9F013002F637E /* TicTacToeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEC80E4F2CA9F013002F637E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEC80E512CA9F013002F637E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +86,8 @@
 		42DB25BA2CAA7FB900D90C1A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+
+
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -104,11 +114,14 @@
 			children = (
 				42DB25BE2CAA7FFF00D90C1A /* UIButton+Ext.swift */,
 				DE8429AC2CAAEC6B00A74C13 /* UIColor + Ext.swift */,
+
 				DE8429BC2CAB32B900A74C13 /* UIFont + Ext.swift */,
+
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+
 		DE8429B02CAB312100A74C13 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +141,7 @@
 			path = "SFProDisplay ";
 			sourceTree = "<group>";
 		};
+
 		DEC80E432CA9F013002F637E = {
 			isa = PBXGroup;
 			children = (
@@ -199,7 +213,9 @@
 				42DB25BC2CAA7FBD00D90C1A /* Model */,
 				42DB25BB2CAA7FBB00D90C1A /* View */,
 				42DB25BA2CAA7FB900D90C1A /* Controller */,
+
 				DEC80E6D2CA9F2FD002F637E /* SelectGameVC.swift */,
+
 			);
 			path = "SelectGame Screen";
 			sourceTree = "<group>";
@@ -224,9 +240,11 @@
 		DEC80E762CA9F4E2002F637E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+
 				DE8429B02CAB312100A74C13 /* Fonts */,
 				DE8429AE2CAAED1A00A74C13 /* AppColors.swift */,
 				0F23EC662CAC50E900B161E1 /* ConstantAppString.swift */,
+
 				42DB25BD2CAA7FEA00D90C1A /* Extensions */,
 				DEC80E5A2CA9F014002F637E /* LaunchScreen.storyboard */,
 				DEC80E582CA9F014002F637E /* Assets.xcassets */,
@@ -320,16 +338,20 @@
 			files = (
 				DEC80E692CA9F245002F637E /* ResultVC.swift in Sources */,
 				DEC80E6C2CA9F298002F637E /* SettingVC.swift in Sources */,
+
 				0F23EC672CAC50F700B161E1 /* ConstantAppString.swift in Sources */,
+
 				42DB25C12CAA800900D90C1A /* SelectDifficultyView.swift in Sources */,
 				DE8429AF2CAAED1A00A74C13 /* AppColors.swift in Sources */,
 				42DB25C32CAA84CE00D90C1A /* Model.swift in Sources */,
 				DEC80E542CA9F013002F637E /* OnboardingVC.swift in Sources */,
 				DEC80E502CA9F013002F637E /* AppDelegate.swift in Sources */,
+
 				0F23EC652CAB380900B161E1 /* CellView.swift in Sources */,
 				896F63EB2CAAEB6F00814739 /* CustomNavigationController.swift in Sources */,
 				DE8429BD2CAB32B900A74C13 /* UIFont + Ext.swift in Sources */,
 				DEC80E712CA9F361002F637E /* HowToPlayVC.swift in Sources */,
+
 				42DB25BF2CAA7FFF00D90C1A /* UIButton+Ext.swift in Sources */,
 				DEC80E752CA9F47B002F637E /* LeaderBoardVC.swift in Sources */,
 				DE8429AD2CAAEC6B00A74C13 /* UIColor + Ext.swift in Sources */,
@@ -486,7 +508,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -517,7 +539,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
