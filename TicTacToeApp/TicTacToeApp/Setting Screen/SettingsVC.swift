@@ -82,23 +82,23 @@ class SettingsVC: UIViewController {
         
         // MARK: Констрейнты
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            upperStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            upperStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            upperStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            upperStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            
-            lowerStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            lowerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            lowerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            lowerStackView.topAnchor.constraint(equalTo: upperStackView.bottomAnchor, constant: 20),
-            lowerStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
-            //lowerStackView.heightAnchor.constraint(equalToConstant: 500)
-        ])
+                   scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                   scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                   scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                   scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                   
+                   upperStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                   upperStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+                   upperStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+                   upperStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+                   
+                   lowerStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                   lowerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+                   lowerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+                   lowerStackView.topAnchor.constraint(equalTo: upperStackView.bottomAnchor, constant: 20),
+                   lowerStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
+                   //lowerStackView.heightAnchor.constraint(equalToConstant: 500)
+               ])
         
         // MARK: Добавляем блоки наверх
         let upperTitles = ["Game Time", "Duration", "Music", "Select Music"]
