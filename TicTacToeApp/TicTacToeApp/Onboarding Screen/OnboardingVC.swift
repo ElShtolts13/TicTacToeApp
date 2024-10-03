@@ -11,7 +11,7 @@ class OnboardingVC: UIViewController {
     
     // MARK: - Private properties
     
-    var settingVC: SettingVC?
+    var settingVC: SettingsVC?
     var rulesVC: HowToPlayVC?
     
     private let xoImage = UIImageView(image: UIImage(named: "XO"))
