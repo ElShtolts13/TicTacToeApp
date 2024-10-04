@@ -126,6 +126,12 @@ class SettingsVC: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.title = "Settings"
+    }
+    
     // MARK: Функция для блоков наверху
     func createUpperBlock(title: String) -> UIView {
         let blockView = UIView()

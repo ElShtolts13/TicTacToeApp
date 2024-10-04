@@ -8,7 +8,8 @@
 import Foundation
 struct SelectGameSettings {
     var isSinglePlayer: Bool
-    var difficulty: Difficulty?
+    var difficulty: Difficulty = .easy
+    var gameTime: TimeInterval
 }
 
 enum Difficulty {
