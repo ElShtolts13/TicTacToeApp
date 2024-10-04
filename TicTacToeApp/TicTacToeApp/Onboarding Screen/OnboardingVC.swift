@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class OnboardingVC: UIViewController {
     
@@ -42,9 +43,6 @@ class OnboardingVC: UIViewController {
                                            foregroundColor: .white,
                                            backgroundColor: AppColors.basicBlue)
    
-    
-    
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -62,9 +60,10 @@ class OnboardingVC: UIViewController {
 
     }
     
-    func setupNavigationBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: rulesButton)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingButton)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+        navigationItem.backButtonTitle = ""
     }
     
     func setupView() {
@@ -94,25 +93,17 @@ class OnboardingVC: UIViewController {
     // MARK: - Actions
     
     @objc private func pressedRulesButton() {
-        let rulesVC = HowToPlayVC()
-        navigationController?.pushViewController(rulesVC, animated: true)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        print("RulesButton was pressed")
+        let rulesController = HowToPlayVC()
+        navigationController?.pushViewController(rulesController, animated: true)
         
     }
     @objc private func pressedSettingButton() {
-        let settingsVC = SettingsVC()
-        navigationController?.pushViewController(settingsVC, animated: true)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        print("SettingButton was pressed")
-        
+        let settingsController = SettingsVC()
+        navigationController?.pushViewController(settingsController, animated: true)
     }
     @objc private func pressedPlayButton() {
-        let selectGameVC = SelectGameVC()
-            navigationController?.pushViewController(selectGameVC, animated: true)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
-        print("PlayButton was pressed")
+        let gameController = SelectGameVC()
+        navigationController?.pushViewController(gameController, animated: true)
         
     }
 }
