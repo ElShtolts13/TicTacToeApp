@@ -1,9 +1,4 @@
-//
-//  SettingVC.swift
-//  TicTacToeApp
-//
-//  Created by Надежда Капацина on 29.09.2024.
-//
+
 
 import UIKit
 
@@ -23,9 +18,10 @@ class SettingsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = AppColors.background
-        title = "Settings Game"
+        title = "Setting Game"
+
+        
         // MARK: ВЬЮХИ
         let scrollView = UIScrollView()
         
@@ -82,23 +78,23 @@ class SettingsVC: UIViewController {
         
         // MARK: Констрейнты
         NSLayoutConstraint.activate([
-                   scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                   scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                   scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                   scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-                   
-                   upperStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                   upperStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-                   upperStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-                   upperStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
-                   
-                   lowerStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                   lowerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-                   lowerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-                   lowerStackView.topAnchor.constraint(equalTo: upperStackView.bottomAnchor, constant: 20),
-                   lowerStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
-                   //lowerStackView.heightAnchor.constraint(equalToConstant: 500)
-               ])
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            upperStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            upperStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            upperStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            upperStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            
+            lowerStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            lowerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            lowerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            lowerStackView.topAnchor.constraint(equalTo: upperStackView.bottomAnchor, constant: 20),
+            lowerStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
+            //lowerStackView.heightAnchor.constraint(equalToConstant: 500)
+        ])
         
         // MARK: Добавляем блоки наверх
         let upperTitles = ["Game Time", "Duration", "Music", "Select Music"]
@@ -109,10 +105,10 @@ class SettingsVC: UIViewController {
             blockView.translatesAutoresizingMaskIntoConstraints = false
             
             NSLayoutConstraint.activate([
-                blockView.leadingAnchor.constraint(equalTo: upperStackView.leadingAnchor, constant: 20),
-                blockView.trailingAnchor.constraint(equalTo: upperStackView.trailingAnchor, constant: -20),
-                // blockView.topAnchor.constraint(equalTo: upperStackView.topAnchor, constant: 20),
-                // blockView.bottomAnchor.constraint(equalTo: upperStackView.bottomAnchor, constant: -20),
+//                blockView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+//                blockView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+//                 blockView.topAnchor.constraint(equalTo: upperStackView.topAnchor, constant: 20),
+//                 blockView.bottomAnchor.constraint(equalTo: upperStackView.bottomAnchor, constant: -20),
             ])
         }
         
@@ -124,12 +120,6 @@ class SettingsVC: UIViewController {
                 rightColumnStackView.addArrangedSubview(createBlock(index: index))
             }
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
-        navigationItem.title = "Settings"
     }
     
     // MARK: Функция для блоков наверху
@@ -267,5 +257,5 @@ class SettingsVC: UIViewController {
 }
 
 #Preview {
-    CustomNavigationController(rootViewController:SettingsVC())
+    CustomNavigationController(rootViewController: SettingsVC())
 }

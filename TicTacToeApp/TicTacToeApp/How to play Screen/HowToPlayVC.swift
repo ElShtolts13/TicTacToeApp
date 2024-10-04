@@ -21,7 +21,6 @@ final class HowToPlayVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = AppColors.background
         title = "How to play"
-        
         setupView()
         setupConstraints()
         configuration()

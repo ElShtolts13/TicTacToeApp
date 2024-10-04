@@ -10,6 +10,7 @@ import SwiftUI
 
 class OnboardingVC: UIViewController {
     
+    
     // MARK: - Private properties
     
     var settingVC: SettingsVC?
@@ -17,16 +18,14 @@ class OnboardingVC: UIViewController {
     
     private let xoImage = UIImageView(image: UIImage(named: "XO"))
     
-    private let settingButton: UIButton = {
+     let settingButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "Setting"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     private let rulesButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "Question"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -51,6 +50,7 @@ class OnboardingVC: UIViewController {
 
         view.backgroundColor = .white
         
+        setupNavigationBar()
         setupView()
         
         rulesButton.addTarget(self, action: #selector(pressedRulesButton), for: .touchUpInside)
@@ -68,23 +68,14 @@ class OnboardingVC: UIViewController {
     
     func setupView() {
         
-        view.addSubview(settingButton)
-        view.addSubview(rulesButton)
         view.addSubview(xoImage)
         view.addSubview(nameGameLabel)
         view.addSubview(playButton)
         
         playButton.translatesAutoresizingMaskIntoConstraints = false
         xoImage.translatesAutoresizingMaskIntoConstraints = false
-        settingButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            
-            settingButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
-            settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
-            rulesButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
-            rulesButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             xoImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             xoImage.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100),
@@ -115,4 +106,8 @@ class OnboardingVC: UIViewController {
         navigationController?.pushViewController(gameController, animated: true)
         
     }
+}
+@available(iOS 17.0, *)
+#Preview {
+    CustomNavigationController(rootViewController: OnboardingVC())
 }
