@@ -49,8 +49,6 @@ class OnboardingVC: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        
-        setupNavigationBar()
         setupView()
         
         rulesButton.addTarget(self, action: #selector(pressedRulesButton), for: .touchUpInside)

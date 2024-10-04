@@ -89,14 +89,14 @@ class SelectGameVC: UIViewController {
     // Обработчик выбора режима одного игрока
     @objc private func handleSinglePlayerSelection() {
         print("Single Player Selected")
-        gameSettings = SelectGameSettings(isSinglePlayer: true)
+        gameSettings = SelectGameSettings(isSinglePlayer: true, gameTime: 1800)
         setupSelectLevelView()  // Переход на выбор уровня сложности
     }
     
     // Обработчик выбора режима двух игроков
     @objc private func handleTwoPlayersSelection() {
         print("Two Players Selected")
-        gameSettings = SelectGameSettings(isSinglePlayer: false)
+        gameSettings = SelectGameSettings(isSinglePlayer: false, gameTime: 1800)
         setupSelectLevelView()  // Переход на выбор уровня сложности
     }
     
@@ -156,7 +156,7 @@ class SelectGameVC: UIViewController {
     
     // Метод для начала игры
     private func startTicTacToeGame() {
-        let gameVC = GameVC()
+        let gameVC = GameVC(gameSettings: gameSettings!)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController?.pushViewController(gameVC, animated: true)
     }
