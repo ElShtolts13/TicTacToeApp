@@ -10,7 +10,11 @@ import UIKit
 class SettingsVC: UIViewController {
     
     var selectedButtonIndex: Int? = nil
+    var selectedDurationButton: UIButton? = nil
     var buttons: [UIButton] = [] //первая кнопка не сбрасывалась
+    var durationView: UIView!
+    var switchControl: UISwitch!
+    var selectedIcons: [String] = []
     
     let imageNames = [
         "Cross", "Nought",
@@ -18,8 +22,7 @@ class SettingsVC: UIViewController {
         "Pie", "IceCream",
         "CrossYelow", "NoughtGreen",
         "Star", "Heart",
-        "Burger", "FrenchFries"
-    ]
+        "Burger", "FrenchFries"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,9 +70,7 @@ class SettingsVC: UIViewController {
         }()
         
         view.addSubview(scrollView)
-        
         scrollView.addSubview(upperStackView)
-        
         scrollView.addSubview(lowerStackView)
         lowerStackView.addArrangedSubview(leftColumnStackView)
         lowerStackView.addArrangedSubview(rightColumnStackView)
@@ -82,39 +83,34 @@ class SettingsVC: UIViewController {
         
         // MARK: Констрейнты
         NSLayoutConstraint.activate([
-                   scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                   scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                   scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                   scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-                   
-                   upperStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                   upperStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-                   upperStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-                   upperStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
-                   
-                   lowerStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                   lowerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-                   lowerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-                   lowerStackView.topAnchor.constraint(equalTo: upperStackView.bottomAnchor, constant: 20),
-                   lowerStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
-                   //lowerStackView.heightAnchor.constraint(equalToConstant: 500)
-               ])
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                        
+            upperStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            upperStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            upperStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            upperStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            
+            lowerStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            lowerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            lowerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            lowerStackView.topAnchor.constraint(equalTo: upperStackView.bottomAnchor, constant: 20),
+            lowerStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
+        ])
         
-        // MARK: Добавляем блоки наверх
-        let upperTitles = ["Game Time", "Duration", "Music", "Select Music"]
-        for title in upperTitles {
-            let blockView = createUpperBlock(title: title)
-            upperStackView.addArrangedSubview(blockView)
+        loadSettings()
+        
+        let gameTimeView = createGameTimeView() // Наполнение upperStackView (базовый вариант)
+        durationView = createDurationView()
+
+        upperStackView.addArrangedSubview(gameTimeView)
+        upperStackView.addArrangedSubview(durationView)
             
-            blockView.translatesAutoresizingMaskIntoConstraints = false
-            
-            NSLayoutConstraint.activate([
-                blockView.leadingAnchor.constraint(equalTo: upperStackView.leadingAnchor, constant: 20),
-                blockView.trailingAnchor.constraint(equalTo: upperStackView.trailingAnchor, constant: -20),
-                // blockView.topAnchor.constraint(equalTo: upperStackView.topAnchor, constant: 20),
-                // blockView.bottomAnchor.constraint(equalTo: upperStackView.bottomAnchor, constant: -20),
-            ])
-        }
+        durationView.isHidden = true
+        let switchControl = gameTimeView.subviews.compactMap { $0 as? UISwitch }.first
+        switchControl?.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
         
         // MARK: Добавляем блоки вниз
         for index in 0..<6 {
@@ -131,54 +127,90 @@ class SettingsVC: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Settings"
     }
-    
-    // MARK: Функция для блоков наверху
-    func createUpperBlock(title: String) -> UIView {
-        let blockView = UIView()
-        blockView.backgroundColor = AppColors.basicLightBlue
-        blockView.layer.cornerRadius = 30
-        blockView.translatesAutoresizingMaskIntoConstraints = false
-            
-        blockView.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    // MARK: Верхние блоки
+    func createGameTimeView() -> UIView {
+        let view = UIView()
+        view.backgroundColor = AppColors.basicLightBlue
+        view.layer.cornerRadius = 30
+        view.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         
-        //blockView.isLayoutMarginsRelativeArrangement = true
-            
         let titleLabel = UILabel()
         titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        titleLabel.textAlignment = .left
+        titleLabel.text = "Game Time"
         titleLabel.textColor = .black
-        titleLabel.text = title
-            
-        let contentStack: UIStackView
-            
-        if title == "Game Time" || title == "Music" {
-            let switchControl = UISwitch()
-            switchControl.isOn = false
-            switchControl.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
-            switchControl.onTintColor = AppColors.basicBlue
+        
+        switchControl = UISwitch()
+        switchControl.isOn = false
+        switchControl.onTintColor = AppColors.basicBlue
+        switchControl.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
+        
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, switchControl])
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.alignment = .center
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
 
-            contentStack = UIStackView(arrangedSubviews: [titleLabel, switchControl])
-            contentStack.axis = .horizontal
-            contentStack.spacing = 10
-            contentStack.alignment = .center
-        } else {
-            contentStack = UIStackView(arrangedSubviews: [titleLabel])
-            contentStack.axis = .vertical
-            contentStack.spacing = 10
-            contentStack.alignment = .leading
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
+        ])
+
+        return view
+    }
+
+    func createDurationView() -> UIView {
+        let view = UIView()
+        view.backgroundColor = AppColors.basicLightBlue
+        view.layer.cornerRadius = 30
+        view.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+
+        let titleLabel = UILabel()
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        titleLabel.text = "Duration"
+        titleLabel.textColor = .black
+
+        let lineView = UIView()
+        lineView.backgroundColor = .lightGray
+        lineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+
+        let buttonStackView = UIStackView()
+        let durations = ["1 min", "2 min", "5 min"]
+
+        for duration in durations {
+            let button = UIButton(type: .system)
+            button.setTitle(duration, for: .normal)
+            button.setTitleColor(.black, for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+            button.contentHorizontalAlignment = .left
+            button.backgroundColor = .clear
+            button.addTarget(self, action: #selector(durationButtonTapped(_:)), for: .touchUpInside)
+            buttonStackView.addArrangedSubview(button)
         }
         
-        contentStack.translatesAutoresizingMaskIntoConstraints = false
-        blockView.addSubview(contentStack)
-        
+        buttonStackView.axis = .vertical
+        buttonStackView.spacing = 10
+        buttonStackView.distribution = .fillEqually
+
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, lineView, buttonStackView])
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.alignment = .fill
+
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+
         NSLayoutConstraint.activate([
-            contentStack.leadingAnchor.constraint(equalTo: blockView.layoutMarginsGuide.leadingAnchor),
-            contentStack.trailingAnchor.constraint(equalTo: blockView.layoutMarginsGuide.trailingAnchor),
-            contentStack.topAnchor.constraint(equalTo: blockView.layoutMarginsGuide.topAnchor),
-            contentStack.bottomAnchor.constraint(equalTo: blockView.layoutMarginsGuide.bottomAnchor)
+            stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ])
-        
-        return blockView
+
+        return view
     }
     
     // MARK: Функция для блоков внизу
@@ -223,7 +255,6 @@ class SettingsVC: UIViewController {
         blockStackView.axis = .vertical
         blockStackView.spacing = 10
         blockStackView.alignment = .fill
-        
         blockStackView.translatesAutoresizingMaskIntoConstraints = false
         blockView.addSubview(blockStackView)
         
@@ -239,30 +270,73 @@ class SettingsVC: UIViewController {
         return blockView
     }
     
-    // MARK: Логика нажатия кнопки
-    @objc func handleButtonPress(_ sender: UIButton) {
-            // Сбрасываем все кнопки
+    // MARK: USERDEFAULTS
+    func loadSettings() {
+        let defaults = UserDefaults.standard
+            
+        if let savedIcons = defaults.array(forKey: "selectedIcons") as? [String] {
+            selectedIcons = savedIcons
+        }
+            
+        if let savedTime = defaults.string(forKey: "selectedTime") {
             for button in buttons {
-                button.setTitle("Choose", for: .normal)
-                button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-                button.setTitleColor(.black, for: .normal)
-                button.backgroundColor = AppColors.basicLightBlue
+                if button.currentTitle == savedTime {
+                    durationButtonTapped(button)
+                    break
+                }
             }
+        }
+    }
+        
+    func saveSettings() {
+        let defaults = UserDefaults.standard
+        defaults.set(selectedIcons, forKey: "selectedIcons")
+        if let selectedDurationButton = selectedDurationButton {
+            defaults.set(selectedDurationButton.currentTitle, forKey: "selectedTime")
+        }
+    }
+    
+    // MARK: ЛОГИКА
+    @objc func handleButtonPress(_ sender: UIButton) {
+        // Сбрасываем все кнопки
+        for button in buttons {
+            button.setTitle("Choose", for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+            button.setTitleColor(.black, for: .normal)
+            button.backgroundColor = AppColors.basicLightBlue
+        }
             
-            sender.setTitle("Picked", for: .normal)
-            sender.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-            sender.setTitleColor(.white, for: .normal)
-            sender.backgroundColor = AppColors.basicBlue
-            
-            selectedButtonIndex = sender.tag // запоминаем индекс нажатой кнопки
+        sender.setTitle("Picked", for: .normal)
+        sender.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        sender.setTitleColor(.white, for: .normal)
+        sender.backgroundColor = AppColors.basicBlue
+        
+        selectedButtonIndex = sender.tag // запоминаем индекс нажатой кнопки
+        
+        if selectedIcons.count < 2 {
+            selectedIcons.append(imageNames[selectedButtonIndex! * 2])
+            selectedIcons.append(imageNames[selectedButtonIndex! * 2 + 1])
+            saveSettings()
+        }
     }
     
     @objc func switchValueChanged(_ sender: UISwitch) {
-        if sender.isOn {
-            print("Switch is ON")
-        } else {
-            print("Switch is OFF")
+        durationView.isHidden = !sender.isOn
+    }
+
+    @objc func durationButtonTapped(_ sender: UIButton) {
+        if let previousSelectedButton = selectedDurationButton {
+            previousSelectedButton.backgroundColor = .clear
+            previousSelectedButton.setTitleColor(.black, for: .normal)
         }
+        
+        sender.backgroundColor = AppColors.secondaryPurple
+        
+        selectedDurationButton = sender
+        
+        print("Selected duration: \(sender.currentTitle ?? "")")
+        
+        saveSettings()
     }
 }
 
