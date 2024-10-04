@@ -17,7 +17,7 @@ class ResultVC: UIViewController {
     
     //MARK: - Private properties
     
-    private let playButton = UIButton.createButton(
+    private let playAgainButton = UIButton.createButton(
         title: "Play again",
         foregroundColor: .white,
         backgroundColor: AppColors.basicBlue,
@@ -50,6 +50,7 @@ class ResultVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
         createView()
         constreinView()
     }
@@ -73,7 +74,7 @@ class ResultVC: UIViewController {
         }
         
         createStackButton()
-        playButton.addTarget(self, action: #selector(playButtonTaped), for: .touchUpInside)
+        playAgainButton.addTarget(self, action: #selector(playAgainTaped), for: .touchUpInside)
         backButton.addTarget(self, action: #selector(backButtonTaped), for: .touchUpInside)
     }
     
@@ -86,7 +87,7 @@ class ResultVC: UIViewController {
 //        stackButton.distribution = .fillEqually
 //        stackButton.addArrangedSubview(createButton(name: "Play again"))
 //        stackButton.addArrangedSubview(createButton(name: "Back"))
-        stackButton.addArrangedSubview(playButton)
+        stackButton.addArrangedSubview(playAgainButton)
         stackButton.addArrangedSubview(backButton)
     }
     
@@ -104,8 +105,6 @@ class ResultVC: UIViewController {
             stackButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -21),
             stackButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -31),
             stackButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -156 + -31)
-            
-        
         ])
     }
 
@@ -148,15 +147,27 @@ extension ResultVC {
         //  переход в зависимости от выбора пользователя
     }
     
-    @objc private func playButtonTaped(_ sender: UIButton) {
+    @objc private func playAgainTaped(_ sender: UIButton) {
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.popViewController(animated: true)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         print("User tap \(String(describing: sender.currentTitle))")
         //  переход в зависимости от выбора пользователя
     }
     
     @objc private func backButtonTaped(_ sender: UIButton) {
+        let selectGameVC = navigationController?.viewControllers.first(where: { $0 is SelectGameVC })
+        guard let selectGameVC else { return }
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.popToViewController(selectGameVC, animated: true)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        
         print("User tap \(String(describing: sender.currentTitle))")
         //  переход в зависимости от выбора пользователя
     }
 
-    
+}
+@available(iOS 16.0, *)
+#Preview {
+    CustomNavigationController(rootViewController: ResultVC())
 }
