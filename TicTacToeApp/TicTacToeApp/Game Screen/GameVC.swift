@@ -206,21 +206,34 @@ class GameVC: UIViewController {
         sizeIconPlayers(stack: stackView1)
         sizeIconPlayers(stack: stackView2)
         
-        NSLayoutConstraint.activate( [
-            playingFild.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 50),
-            playingFild.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView1.bottomAnchor.constraint(equalTo: stackPlayerMove.topAnchor, constant: -30),
-            stackView1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            
-            stackPlayerMove.bottomAnchor.constraint(equalTo: playingFild.topAnchor, constant: -30),
-            stackPlayerMove.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView2.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            stackView2.bottomAnchor.constraint(equalTo: stackPlayerMove.topAnchor, constant: -30),
-            labelTimerGame.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            labelTimerGame.bottomAnchor.constraint(equalTo: stackPlayerMove.topAnchor, constant: -70)
-            
-            
-        ])
+//        NSLayoutConstraint.activate( [
+//            playingFild.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 50),
+//            playingFild.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            stackView1.bottomAnchor.constraint(equalTo: stackPlayerMove.topAnchor, constant: -30),
+//            stackView1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+//            
+//            stackPlayerMove.bottomAnchor.constraint(equalTo: playingFild.topAnchor, constant: -30),
+//            stackPlayerMove.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            stackView2.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+//            stackView2.bottomAnchor.constraint(equalTo: stackPlayerMove.topAnchor, constant: -30),
+//            labelTimerGame.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            labelTimerGame.bottomAnchor.constraint(equalTo: stackPlayerMove.topAnchor, constant: -70)
+//            
+//            
+//        ])
+        NSLayoutConstraint.activate([
+                    stackView1.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 68),
+                    stackView1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+                    stackView2.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+                    stackView2.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 68),
+                    labelTimerGame.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                    labelTimerGame.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 108),
+                    stackPlayerMove.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                    stackPlayerMove.topAnchor.constraint(equalTo: labelTimerGame.bottomAnchor, constant: 69),
+                    playingFild.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                    playingFild.topAnchor.constraint(equalTo: stackPlayerMove.bottomAnchor, constant: 30)
+
+                ])
     }
     
     
