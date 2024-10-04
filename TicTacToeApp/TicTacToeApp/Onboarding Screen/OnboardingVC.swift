@@ -101,8 +101,8 @@ class OnboardingVC: UIViewController {
         
     }
     @objc private func pressedSettingButton() {
-        let settingVC = SettingsVC()
-        navigationController?.pushViewController(settingVC, animated: true)
+        let settingsVC = SettingsVC()
+        navigationController?.pushViewController(settingsVC, animated: true)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         print("SettingButton was pressed")
         

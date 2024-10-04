@@ -156,8 +156,8 @@ class SelectGameVC: UIViewController {
     
     // Метод для начала игры
     private func startTicTacToeGame() {
-        let gameVC = ResultVC()
-        //            ticTacToeVC.gameSettings = gameSettings
+        let gameVC = GameVC()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController?.pushViewController(gameVC, animated: true)
     }
 }
