@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0F23EC652CAB380900B161E1 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F23EC642CAB37E100B161E1 /* CellView.swift */; };
+		0FAB1C2B2CAFDE5300626F19 /* SelectGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB1C2A2CAFDE5300626F19 /* SelectGameVC.swift */; };
 		4254678F2CAA93D600EDC2E8 /* SelectGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4254678E2CAA93D600EDC2E8 /* SelectGameView.swift */; };
 		42DB25BF2CAA7FFF00D90C1A /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB25BE2CAA7FFF00D90C1A /* UIButton+Ext.swift */; };
 		42DB25C12CAA800900D90C1A /* SelectDifficultyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB25C02CAA800900D90C1A /* SelectDifficultyView.swift */; };
@@ -15,6 +16,7 @@
 		7585FC822CAF19F800F5F986 /* ConstantAppString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585FC812CAF19EB00F5F986 /* ConstantAppString.swift */; };
 		896F63EB2CAAEB6F00814739 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896F63EA2CAAEB6F00814739 /* CustomNavigationController.swift */; };
 		896F63ED2CADBD7800814739 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896F63EC2CADBD7800814739 /* GameModel.swift */; };
+		89BAB82E2CB01C6A0098255A /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BAB82D2CB01C6A0098255A /* UserDefaultsKeys.swift */; };
 		DE8429AD2CAAEC6B00A74C13 /* UIColor + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8429AC2CAAEC6B00A74C13 /* UIColor + Ext.swift */; };
 		DE8429AF2CAAED1A00A74C13 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8429AE2CAAED1A00A74C13 /* AppColors.swift */; };
 		DE8429B82CAB318A00A74C13 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE8429B42CAB318A00A74C13 /* SF-Pro-Display-Bold.otf */; };
@@ -30,13 +32,13 @@
 		DEC80E662CA9F18D002F637E /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E652CA9F18D002F637E /* GameVC.swift */; };
 		DEC80E692CA9F245002F637E /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E682CA9F245002F637E /* ResultVC.swift */; };
 		DEC80E6C2CA9F298002F637E /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E6B2CA9F298002F637E /* SettingsVC.swift */; };
-		DEC80E6E2CA9F2FD002F637E /* SelectGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E6D2CA9F2FD002F637E /* SelectGameVC.swift */; };
 		DEC80E712CA9F361002F637E /* HowToPlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E702CA9F361002F637E /* HowToPlayVC.swift */; };
 		DEC80E752CA9F47B002F637E /* LeaderBoardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC80E742CA9F47B002F637E /* LeaderBoardVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0F23EC642CAB37E100B161E1 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		0FAB1C2A2CAFDE5300626F19 /* SelectGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGameVC.swift; sourceTree = "<group>"; };
 		4254678E2CAA93D600EDC2E8 /* SelectGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGameView.swift; sourceTree = "<group>"; };
 		42DB25BE2CAA7FFF00D90C1A /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
 		42DB25C02CAA800900D90C1A /* SelectDifficultyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDifficultyView.swift; sourceTree = "<group>"; };
@@ -44,6 +46,7 @@
 		7585FC812CAF19EB00F5F986 /* ConstantAppString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantAppString.swift; sourceTree = "<group>"; };
 		896F63EA2CAAEB6F00814739 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		896F63EC2CADBD7800814739 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		89BAB82D2CB01C6A0098255A /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		DE8429AC2CAAEC6B00A74C13 /* UIColor + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Ext.swift"; sourceTree = "<group>"; };
 		DE8429AE2CAAED1A00A74C13 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		DE8429B42CAB318A00A74C13 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
@@ -61,7 +64,6 @@
 		DEC80E652CA9F18D002F637E /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
 		DEC80E682CA9F245002F637E /* ResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
 		DEC80E6B2CA9F298002F637E /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
-		DEC80E6D2CA9F2FD002F637E /* SelectGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGameVC.swift; sourceTree = "<group>"; };
 		DEC80E702CA9F361002F637E /* HowToPlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayVC.swift; sourceTree = "<group>"; };
 		DEC80E742CA9F47B002F637E /* LeaderBoardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,6 +82,7 @@
 		42DB25BA2CAA7FB900D90C1A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0FAB1C2A2CAFDE5300626F19 /* SelectGameVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -202,7 +205,6 @@
 				42DB25BC2CAA7FBD00D90C1A /* Model */,
 				42DB25BB2CAA7FBB00D90C1A /* View */,
 				42DB25BA2CAA7FB900D90C1A /* Controller */,
-				DEC80E6D2CA9F2FD002F637E /* SelectGameVC.swift */,
 			);
 			path = "SelectGame Screen";
 			sourceTree = "<group>";
@@ -233,6 +235,7 @@
 				42DB25BD2CAA7FEA00D90C1A /* Extensions */,
 				DEC80E5A2CA9F014002F637E /* LaunchScreen.storyboard */,
 				DEC80E582CA9F014002F637E /* Assets.xcassets */,
+				89BAB82D2CB01C6A0098255A /* UserDefaultsKeys.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -322,11 +325,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEC80E692CA9F245002F637E /* ResultVC.swift in Sources */,
+				89BAB82E2CB01C6A0098255A /* UserDefaultsKeys.swift in Sources */,
 				DEC80E6C2CA9F298002F637E /* SettingsVC.swift in Sources */,
 				42DB25C12CAA800900D90C1A /* SelectDifficultyView.swift in Sources */,
 				DE8429AF2CAAED1A00A74C13 /* AppColors.swift in Sources */,
 				896F63ED2CADBD7800814739 /* GameModel.swift in Sources */,
 				42DB25C32CAA84CE00D90C1A /* Model.swift in Sources */,
+				0FAB1C2B2CAFDE5300626F19 /* SelectGameVC.swift in Sources */,
 				DEC80E542CA9F013002F637E /* OnboardingVC.swift in Sources */,
 				DEC80E502CA9F013002F637E /* AppDelegate.swift in Sources */,
 				0F23EC652CAB380900B161E1 /* CellView.swift in Sources */,
@@ -340,7 +345,6 @@
 				DEC80E522CA9F013002F637E /* SceneDelegate.swift in Sources */,
 				4254678F2CAA93D600EDC2E8 /* SelectGameView.swift in Sources */,
 				7585FC822CAF19F800F5F986 /* ConstantAppString.swift in Sources */,
-				DEC80E6E2CA9F2FD002F637E /* SelectGameVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,19 +488,20 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TicTacToeApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nadezhda.TicTacToeApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nadezhda.TicTacToeApp1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -515,19 +520,20 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TicTacToeApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nadezhda.TicTacToeApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nadezhda.TicTacToeApp1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

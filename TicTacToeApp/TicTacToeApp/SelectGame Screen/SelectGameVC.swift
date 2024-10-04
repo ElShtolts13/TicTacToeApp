@@ -11,6 +11,14 @@ class SelectGameVC: UIViewController {
     
     private var gameSettings: SelectGameSettings?
     
+    private var gameTime: TimeInterval {
+        if UserDefaults.standard.value(forKey: UserDefaultsKeys.gameTime) != nil {
+            UserDefaults.standard.double(forKey: UserDefaultsKeys.gameTime) * 60
+        } else {
+            60 * 60
+        }
+    }
+    
     // MARK: - Private properties
 
     private let selectGameView = SelectGameView()  // Вью для выбора игры
@@ -20,9 +28,15 @@ class SelectGameVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = AppColors.background
         // Настраиваем представление для выбора игры при загрузке экрана
         setupGameSelectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.backButtonTitle = ""
     }
 
     // MARK: - Private methods
@@ -70,14 +84,14 @@ class SelectGameVC: UIViewController {
     // Обработчик выбора режима одного игрока
     @objc private func handleSinglePlayerSelection() {
         print("Single Player Selected")
-        gameSettings = SelectGameSettings(isSinglePlayer: true)
+        gameSettings = SelectGameSettings(isSinglePlayer: true, gameTime: gameTime)
         setupSelectLevelView()  // Переход на выбор уровня сложности
     }
 
     // Обработчик выбора режима двух игроков
     @objc private func handleTwoPlayersSelection() {
         print("Two Players Selected")
-        gameSettings = SelectGameSettings(isSinglePlayer: false)
+        gameSettings = SelectGameSettings(isSinglePlayer: false, gameTime: gameTime)
         setupSelectLevelView()  // Переход на выбор уровня сложности
     }
 
@@ -134,9 +148,9 @@ class SelectGameVC: UIViewController {
         
         // Метод для начала игры
         private func startTicTacToeGame() {
-            let ticTacToeVC = ResultVC()
-//            ticTacToeVC.gameSettings = gameSettings
-            navigationController?.pushViewController(ticTacToeVC, animated: true)
+            guard let gameSettings else { return }
+            let gameController = GameVC(gameSettings: gameSettings)
+            navigationController?.pushViewController(gameController, animated: true)
         }
 }
 

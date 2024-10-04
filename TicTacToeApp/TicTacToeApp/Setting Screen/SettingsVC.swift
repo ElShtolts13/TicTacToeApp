@@ -28,7 +28,7 @@ class SettingsVC: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = AppColors.background
-        
+        title = "Settings Game"
         // MARK: ВЬЮХИ
         let scrollView = UIScrollView()
         
@@ -122,6 +122,11 @@ class SettingsVC: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.title = "Settings"
+    }
     // MARK: Верхние блоки
     func createGameTimeView() -> UIView {
         let view = UIView()
@@ -336,5 +341,5 @@ class SettingsVC: UIViewController {
 }
 
 #Preview {
-    SettingsVC()
+    CustomNavigationController(rootViewController:SettingsVC())
 }

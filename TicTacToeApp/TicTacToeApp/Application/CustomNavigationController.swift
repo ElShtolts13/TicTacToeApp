@@ -24,9 +24,7 @@ final class CustomNavigationController: UINavigationController {
                                                   .foregroundColor: titleColor]
         standartAppearance.shadowColor = .clear
         standartAppearance.setBackIndicatorImage(.backIcon,
-                                                 transitionMaskImage: .backIcon)
-        standartAppearance.backButtonAppearance  = .init(style: .plain)
-        
+                                                 transitionMaskImage: .backIcon)        
 
         let compactAppearance = standartAppearance.copy()
         

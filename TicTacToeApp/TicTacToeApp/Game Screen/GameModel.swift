@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class GameModel {
     
@@ -148,4 +149,14 @@ final class GameModel {
         return moves
     }
     
+}
+
+struct PlayerMove {
+    let playerImage: Image?
+    let playerName = String()
+    
+    enum Image {
+        static let X = UIImage(named: "Cross")
+        static let O = UIImage(named: "Nought")
+    }
 }
