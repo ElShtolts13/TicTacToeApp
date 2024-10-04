@@ -12,8 +12,8 @@ class GameVC: UIViewController {
     // входящие данные
     
     var countPlayers = 2
-    
-    var timerGame = 60
+    var model: GameModel
+    var timerGame: Double
     //-----------------
     //как передадут стек картинок?
     
@@ -153,6 +153,16 @@ class GameVC: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
+
+    init(gameSettings: SelectGameSettings) {
+        self.timerGame = gameSettings.gameTime
+        self.model = GameModel(isGameWithAI: gameSettings.isSinglePlayer, playerIsFirst: true, difficult: gameSettings.difficulty)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -164,6 +174,12 @@ class GameVC: UIViewController {
         setupConstrein()
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.title = ""
     }
     
     func setupPlayingFild() {
@@ -235,10 +251,13 @@ class GameVC: UIViewController {
     @objc func tapButton(sender: UIButton) {
         print(sender)
         switch playerMove {
-        case 1: sender.setImage(PlayerMove.Image.X, for: .normal)
-        case 2: sender.setImage(PlayerMove.Image.O, for: .normal)
+        case 1:
+            sender.setImage(PlayerMove.Image.X, for: .normal)
+        case 2:
+            sender.setImage(PlayerMove.Image.O, for: .normal)
         default: break
         }
+        model.move(at: sender.tag - 1)
         if playerMove == 1 {
             playerMove = 2
         } else {
