@@ -28,7 +28,7 @@ class GameVC: UIViewController {
         let label = UILabel()
         label.text = "Player One"
         label.translatesAutoresizingMaskIntoConstraints = false
-//        label.font = .boldSystemFont(ofSize: 16)
+        //        label.font = .boldSystemFont(ofSize: 16)
         label.font = .SFProDisplay.bold.size(of: 16)
         return label
     }()
@@ -153,7 +153,7 @@ class GameVC: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = AppColors.background
@@ -162,7 +162,7 @@ class GameVC: UIViewController {
         setupPlayingFild()
         configPlayersMove()
         setupConstrein()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -203,7 +203,7 @@ class GameVC: UIViewController {
             labelTimerGame.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             labelTimerGame.bottomAnchor.constraint(equalTo: stackPlayerMove.topAnchor, constant: -70)
             
-        
+            
         ])
     }
     
@@ -256,15 +256,16 @@ class GameVC: UIViewController {
                 laybelPlayerMove.text = "Player One Turn"
             case 2: moveImage.image = PlayerMove.Image.O;
                 laybelPlayerMove.text = "Player Two Turn"
-        default: break
-        }
+            default: break
+            }
             stackPlayerMove.addArrangedSubview(moveImage)
             stackPlayerMove.addArrangedSubview(laybelPlayerMove)
         } else {
             stackPlayerMove.addArrangedSubview(laybelPlayerMove)
         }
         view.addSubview(stackPlayerMove)
+        
     }
-
-
+    
 }
+
