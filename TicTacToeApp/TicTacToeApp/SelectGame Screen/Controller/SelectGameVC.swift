@@ -97,7 +97,7 @@ class SelectGameVC: UIViewController {
     @objc private func handleTwoPlayersSelection() {
         print("Two Players Selected")
         gameSettings = SelectGameSettings(isSinglePlayer: false, gameTime: 1800)
-        setupSelectLevelView()  // Переход на выбор уровня сложности
+        startTicTacToeGame()
     }
     
     // Обработчик выбора таблицы лидеров

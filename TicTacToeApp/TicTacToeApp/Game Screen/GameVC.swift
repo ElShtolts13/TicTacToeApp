@@ -14,6 +14,8 @@ class GameVC: UIViewController {
     var countPlayers = 2
     var model: GameModel
     var timerGame: Double
+    let isGameWithAI: Bool
+    let difficulty: Difficulty
     //-----------------
     //как передадут стек картинок?
     
@@ -153,9 +155,13 @@ class GameVC: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
+    
+    private var buttons: [UIButton] = []
 
     init(gameSettings: SelectGameSettings) {
+        self.isGameWithAI = gameSettings.isSinglePlayer
         self.timerGame = gameSettings.gameTime
+        self.difficulty = gameSettings.difficulty
         self.model = GameModel(isGameWithAI: gameSettings.isSinglePlayer, playerIsFirst: true, difficult: gameSettings.difficulty)
         super.init(nibName: nil, bundle: nil)
     }
@@ -191,6 +197,24 @@ class GameVC: UIViewController {
         createFild(stack: stackButtonLineOne, line: tagButtonLineOne)
         createFild(stack: stackButtonLineTwo, line: tagButtonLineTwo)
         createFild(stack: stackButtonLineThree, line: tagButtomLineThree)
+        
+        stackButtonLineOne.subviews.forEach {
+            if let button = $0 as? UIButton {
+                buttons.append(button)
+            }
+        }
+        
+        stackButtonLineTwo.subviews.forEach {
+            if let button = $0 as? UIButton {
+                buttons.append(button)
+            }
+        }
+        
+        stackButtonLineThree.subviews.forEach {
+            if let button = $0 as? UIButton {
+                buttons.append(button)
+            }
+        }
         
         playingFild.addArrangedSubview(stackButtonLineOne)
         playingFild.addArrangedSubview(stackButtonLineTwo)
@@ -262,7 +286,9 @@ class GameVC: UIViewController {
     }
     
     @objc func tapButton(sender: UIButton) {
-        print(sender)
+        if !isGameWithAI {
+            guard model.canMove(at: sender.tag - 1) else { return }
+        }
         switch playerMove {
         case 1:
             sender.setImage(PlayerMove.Image.X, for: .normal)
@@ -277,6 +303,24 @@ class GameVC: UIViewController {
             playerMove = 1
         }
         configPlayersMove()
+        
+        if let result = model.checkWinner() {
+            let resultVC = ResultVC(inputResult: result)
+            resultVC.backWasTap = { [weak self] in
+                guard let self else { return }
+                model.resetGame(with: playerMove.isMultiple(of: 2))
+                buttons.forEach {
+                    $0.setImage(nil, for: .normal)
+                }
+            }
+            navigationController?.pushViewController(resultVC, animated: true)
+        } else {
+            if isGameWithAI, playerMove == 2 {
+                let index = model.currentIndex
+                let button = buttons[index]
+                tapButton(sender: button)
+            }
+        }
     }
     
     
