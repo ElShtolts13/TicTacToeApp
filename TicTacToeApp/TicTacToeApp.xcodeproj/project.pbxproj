@@ -16,6 +16,7 @@
 		7585FC822CAF19F800F5F986 /* ConstantAppString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585FC812CAF19EB00F5F986 /* ConstantAppString.swift */; };
 		896F63EB2CAAEB6F00814739 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896F63EA2CAAEB6F00814739 /* CustomNavigationController.swift */; };
 		896F63ED2CADBD7800814739 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896F63EC2CADBD7800814739 /* GameModel.swift */; };
+		89723C082CB1A8B1001171D6 /* VerticalLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89723C072CB1A8B1001171D6 /* VerticalLineView.swift */; };
 		89BAB82E2CB01C6A0098255A /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BAB82D2CB01C6A0098255A /* UserDefaultsKeys.swift */; };
 		DE8429AD2CAAEC6B00A74C13 /* UIColor + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8429AC2CAAEC6B00A74C13 /* UIColor + Ext.swift */; };
 		DE8429AF2CAAED1A00A74C13 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8429AE2CAAED1A00A74C13 /* AppColors.swift */; };
@@ -46,6 +47,7 @@
 		7585FC812CAF19EB00F5F986 /* ConstantAppString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantAppString.swift; sourceTree = "<group>"; };
 		896F63EA2CAAEB6F00814739 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		896F63EC2CADBD7800814739 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		89723C072CB1A8B1001171D6 /* VerticalLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalLineView.swift; sourceTree = "<group>"; };
 		89BAB82D2CB01C6A0098255A /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		DE8429AC2CAAEC6B00A74C13 /* UIColor + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Ext.swift"; sourceTree = "<group>"; };
 		DE8429AE2CAAED1A00A74C13 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			children = (
 				DEC80E652CA9F18D002F637E /* GameVC.swift */,
 				896F63EC2CADBD7800814739 /* GameModel.swift */,
+				89723C072CB1A8B1001171D6 /* VerticalLineView.swift */,
 			);
 			path = "Game Screen";
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				DEC80E752CA9F47B002F637E /* LeaderBoardVC.swift in Sources */,
 				DE8429AD2CAAEC6B00A74C13 /* UIColor + Ext.swift in Sources */,
 				DEC80E662CA9F18D002F637E /* GameVC.swift in Sources */,
+				89723C082CB1A8B1001171D6 /* VerticalLineView.swift in Sources */,
 				DEC80E522CA9F013002F637E /* SceneDelegate.swift in Sources */,
 				4254678F2CAA93D600EDC2E8 /* SelectGameView.swift in Sources */,
 				7585FC822CAF19F800F5F986 /* ConstantAppString.swift in Sources */,
