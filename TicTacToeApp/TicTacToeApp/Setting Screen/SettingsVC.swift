@@ -15,6 +15,13 @@ class SettingsVC: UIViewController {
     var durationView: UIView!
     var switchControl: UISwitch!
     var selectedIcons: [String] = []
+//    var timerOnOff: Bool {
+//        if UserDefaults.standard.bool(forKey: "timerOnOff") {
+//            false
+//        } else {
+//            UserDefaults.standard.bool(forKey: "timerOnOff")
+//        }
+//    }
     
     let imageNames = [
         "Cross", "Nought",
@@ -26,7 +33,8 @@ class SettingsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        print("\(timerOnOff)!!!!!!!!!!!")
+        print("\(UserDefaults.standard.bool(forKey: "timerOnOff"))!!!!!!!!!!!!!!!")
         view.backgroundColor = AppColors.background
         title = "Settings Game"
         // MARK: ВЬЮХИ
@@ -140,7 +148,7 @@ class SettingsVC: UIViewController {
         titleLabel.textColor = .black
         
         switchControl = UISwitch()
-        switchControl.isOn = false
+        switchControl.isOn = UserDefaults.standard.bool(forKey: "timerOnOff")
         switchControl.onTintColor = AppColors.basicBlue
         switchControl.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
         
@@ -167,6 +175,7 @@ class SettingsVC: UIViewController {
         view.backgroundColor = AppColors.basicLightBlue
         view.layer.cornerRadius = 30
         view.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+//        view.layoutMargins = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
 
         let titleLabel = UILabel()
         titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
@@ -278,7 +287,7 @@ class SettingsVC: UIViewController {
         if let savedIcons = defaults.array(forKey: "selectedIcons") as? [String] {
             selectedIcons = savedIcons
         }
-            
+        
         if let savedTime = defaults.string(forKey: "selectedTime") {
             for button in buttons {
                 if button.currentTitle == savedTime {
@@ -324,6 +333,7 @@ class SettingsVC: UIViewController {
     
     @objc func switchValueChanged(_ sender: UISwitch) {
         durationView.isHidden = !sender.isOn
+        UserDefaults.standard.set(sender.isOn, forKey: "timerOnOff")
     }
 
     @objc func durationButtonTapped(_ sender: UIButton) {
