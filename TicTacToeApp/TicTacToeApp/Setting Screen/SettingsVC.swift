@@ -178,15 +178,16 @@ class SettingsVC: UIViewController {
         lineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
 
         let buttonStackView = UIStackView()
-        let durations = ["1 min", "2 min", "5 min"]
+        let durations = [1, 2, 5]
 
         for duration in durations {
             let button = UIButton(type: .system)
-            button.setTitle(duration, for: .normal)
+            button.setTitle("\(String(duration)) min", for: .normal)
             button.setTitleColor(.black, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .regular)
             button.contentHorizontalAlignment = .left
             button.backgroundColor = .clear
+            button.tag = duration
             button.addTarget(self, action: #selector(durationButtonTapped(_:)), for: .touchUpInside)
             buttonStackView.addArrangedSubview(button)
         }
@@ -292,7 +293,8 @@ class SettingsVC: UIViewController {
         let defaults = UserDefaults.standard
         defaults.set(selectedIcons, forKey: "selectedIcons")
         if let selectedDurationButton = selectedDurationButton {
-            defaults.set(selectedDurationButton.currentTitle, forKey: "selectedTime")
+//            defaults.set(selectedDurationButton.currentTitle, forKey: "selectedTime")
+            defaults.set(selectedDurationButton.tag, forKey: "selectedTime")
         }
     }
     
@@ -335,6 +337,7 @@ class SettingsVC: UIViewController {
         selectedDurationButton = sender
         
         print("Selected duration: \(sender.currentTitle ?? "")")
+        
         
         saveSettings()
     }

@@ -15,6 +15,7 @@ class SelectGameVC: UIViewController {
     private let selectGameView = SelectGameView()  // Вью для выбора игры
     private let selectLevelView = SelectDifficultyView()      // Вью для выбора уровня
     
+    private var gameTime = 0.0
     // MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -28,6 +29,7 @@ class SelectGameVC: UIViewController {
         view.backgroundColor = AppColors.background
         // Настраиваем представление для выбора игры при загрузке экрана
         setupNavigationBar()
+        
     }
     func setupNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: .backIcon, style: .plain, target: self, action: #selector (backButtonAction))
@@ -37,6 +39,7 @@ class SelectGameVC: UIViewController {
     
     // Настройка представления для выбора игры
     private func setupGameSelectionView() {
+        gameTime = UserDefaults.standard.double(forKey: "selectedTime")
         selectGameView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(selectGameView)
         
@@ -89,14 +92,14 @@ class SelectGameVC: UIViewController {
     // Обработчик выбора режима одного игрока
     @objc private func handleSinglePlayerSelection() {
         print("Single Player Selected")
-        gameSettings = SelectGameSettings(isSinglePlayer: true, gameTime: 1800)
+        gameSettings = SelectGameSettings(isSinglePlayer: true, gameTime: gameTime)
         setupSelectLevelView()  // Переход на выбор уровня сложности
     }
     
     // Обработчик выбора режима двух игроков
     @objc private func handleTwoPlayersSelection() {
         print("Two Players Selected")
-        gameSettings = SelectGameSettings(isSinglePlayer: false, gameTime: 1800)
+        gameSettings = SelectGameSettings(isSinglePlayer: false, gameTime: gameTime)
         startTicTacToeGame()
     }
     

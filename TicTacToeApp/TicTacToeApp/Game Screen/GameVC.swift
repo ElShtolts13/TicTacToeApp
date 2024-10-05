@@ -13,13 +13,17 @@ class GameVC: UIViewController {
     
     var countPlayers = 2
     var model: GameModel
-    var timerGame: Double
+    var gameTime: Double
     let isGameWithAI: Bool
     let difficulty: Difficulty
     //-----------------
     //как передадут стек картинок?
     
     //-----------------
+    
+    var tempTimerGame = Int(UserDefaults.standard.integer(forKey: "selectedTime")) * 60
+    
+    var timer = Timer()
     var playerMove = 1
     let tagButtonLineOne = [1, 2, 3]
     let tagButtonLineTwo = [4, 5, 6]
@@ -55,7 +59,7 @@ class GameVC: UIViewController {
     
     let labelTimerGame: UILabel = {
         let label = UILabel()
-        label.text = "00:00"
+//        label.text = "00:00"
         label.font = .SFProDisplay.bold.size(of: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -160,7 +164,7 @@ class GameVC: UIViewController {
 
     init(gameSettings: SelectGameSettings) {
         self.isGameWithAI = gameSettings.isSinglePlayer
-        self.timerGame = gameSettings.gameTime
+        self.gameTime = gameSettings.gameTime
         self.difficulty = gameSettings.difficulty
         self.model = GameModel(isGameWithAI: gameSettings.isSinglePlayer, playerIsFirst: true, difficult: gameSettings.difficulty)
         super.init(nibName: nil, bundle: nil)
@@ -174,10 +178,13 @@ class GameVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = AppColors.background
         
+        print("\(gameTime)")
         
         setupPlayingFild()
         configPlayersMove()
         setupConstrein()
+        timerGame()
+        
         
         // Do any additional setup after loading the view.
     }
@@ -221,37 +228,22 @@ class GameVC: UIViewController {
         playingFild.addArrangedSubview(stackButtonLineThree)
     }
     
-    func setupConstrein() {
+    private func setupConstrein() {
         
         stackView1.addArrangedSubview(imagePlayerOne)
         stackView1.addArrangedSubview(labelPlayerOne)
         stackView2.addArrangedSubview(imagePlayerTwo)
         stackView2.addArrangedSubview(labelPlayerTwo)
-        sizeIconPlayers(stack: stackView1)
-        sizeIconPlayers(stack: stackView2)
+//        sizeIconPlayers(stack: stackView1)
+//        sizeIconPlayers(stack: stackView2)
         
-//        NSLayoutConstraint.activate( [
-//            playingFild.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 50),
-//            playingFild.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            stackView1.bottomAnchor.constraint(equalTo: stackPlayerMove.topAnchor, constant: -30),
-//            stackView1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-//            
-//            stackPlayerMove.bottomAnchor.constraint(equalTo: playingFild.topAnchor, constant: -30),
-//            stackPlayerMove.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            stackView2.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-//            stackView2.bottomAnchor.constraint(equalTo: stackPlayerMove.topAnchor, constant: -30),
-//            labelTimerGame.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            labelTimerGame.bottomAnchor.constraint(equalTo: stackPlayerMove.topAnchor, constant: -70)
-//            
-//            
-//        ])
         NSLayoutConstraint.activate([
-                    stackView1.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 68),
+                    stackView1.topAnchor.constraint(equalTo: view.topAnchor, constant: 112),
                     stackView1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
                     stackView2.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-                    stackView2.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 68),
+                    stackView2.topAnchor.constraint(equalTo: view.topAnchor, constant: 112),
                     labelTimerGame.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                    labelTimerGame.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 108),
+                    labelTimerGame.topAnchor.constraint(equalTo: view.topAnchor, constant: 152),
                     stackPlayerMove.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                     stackPlayerMove.topAnchor.constraint(equalTo: labelTimerGame.bottomAnchor, constant: 69),
                     playingFild.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -261,7 +253,7 @@ class GameVC: UIViewController {
     }
     
     
-    func createFild(stack: UIStackView, line: Array<Int>) {
+    private func createFild(stack: UIStackView, line: Array<Int>) {
         for item in line.enumerated() {
             let button = createButton(tag: item.element)
             stack.addArrangedSubview(button)
@@ -270,7 +262,7 @@ class GameVC: UIViewController {
         }
     }
     
-    func createButton(tag: Int) -> UIButton {
+    private func createButton(tag: Int) -> UIButton {
         let button = UIButton()
         button.tag = tag
         button.layer.cornerRadius = 20
@@ -280,10 +272,10 @@ class GameVC: UIViewController {
         return button
     }
     
-    func sizeIconPlayers(stack: UIStackView) {
-        stack.widthAnchor.constraint(equalToConstant: 103).isActive = true
-        stack.heightAnchor.constraint(equalToConstant: 103).isActive = true
-    }
+//    func sizeIconPlayers(stack: UIStackView) {
+////        stack.widthAnchor.constraint(equalToConstant: 103).isActive = true
+////        stack.heightAnchor.constraint(equalToConstant: 103).isActive = true
+//    }
     
     @objc func tapButton(sender: UIButton) {
         if !isGameWithAI {
@@ -341,6 +333,25 @@ class GameVC: UIViewController {
         }
         view.addSubview(stackPlayerMove)
         
+    }
+        
+    private func timerGame() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerUdate), userInfo: nil, repeats: true)
+    }
+    
+    @objc func timerUdate() {
+        if tempTimerGame != 0 {
+            tempTimerGame -= 1
+            let minutes = Int(tempTimerGame / 60)
+            let seconds = Int(tempTimerGame % 60)
+            labelTimerGame.text = String( format: "%02d:%02d", minutes, seconds )
+//            print("\(minutes):\(seconds)")
+        } else {
+            self.timer.invalidate()
+            let resultVC = ResultVC(inputResult: GameResult.draw)
+            navigationController?.pushViewController(resultVC, animated: true)
+        }
+
     }
     
 }
