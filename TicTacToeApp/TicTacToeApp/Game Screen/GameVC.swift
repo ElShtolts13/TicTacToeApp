@@ -308,7 +308,13 @@ class GameVC: UIViewController {
             let resultVC = ResultVC(inputResult: result)
             resultVC.backWasTap = { [weak self] in
                 guard let self else { return }
-                model.resetGame(with: playerMove.isMultiple(of: 2))
+                if !isGameWithAI {
+                    model.resetGame(with: playerMove.isMultiple(of: 2))
+                } else {
+                    model.resetGame(with: false)
+                    playerMove = 1
+                    configPlayersMove()
+                }
                 buttons.forEach {
                     $0.setImage(nil, for: .normal)
                 }
