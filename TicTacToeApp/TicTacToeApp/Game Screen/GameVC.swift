@@ -311,7 +311,11 @@ class GameVC: UIViewController {
                     $0.setImage(nil, for: .normal)
                 }
             }
-            navigationController?.pushViewController(resultVC, animated: true)
+            drawLine(for: model.winCombination)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                self?.navigationController?.pushViewController(resultVC, animated: true)
+            }
+            print(model.winCombination)
         } else {
             if isGameWithAI, playerMove == 2 {
                 let index = model.currentIndex
@@ -355,10 +359,84 @@ class GameVC: UIViewController {
         } else {
             self.timer.invalidate()
             let resultVC = ResultVC(inputResult: GameResult.draw)
-            navigationController?.pushViewController(resultVC, animated: true)
+//            navigationController?.pushViewController(resultVC, animated: true)
         }
 
     }
     
+    private func drawLine(for combination: [Int]) {
+        let xPoint: CGFloat
+        let yPoint: CGFloat
+        let origin: CGPoint
+        let size: CGSize
+        var view: UIView?
+        var superView: UIView?
+        switch combination {
+        case [1,2,3]:
+            xPoint = 0.0
+            yPoint = stackButtonLineOne.bounds.height / 2
+            origin = .init(x: xPoint, y: yPoint)
+            size = .init(width: stackButtonLineOne.bounds.width, height: 2)
+            superView = stackButtonLineOne
+            view = VerticalLineView(frame: .init(origin: origin, size: size))
+        case [4,5,6]:
+            xPoint = 0.0
+            yPoint = stackButtonLineTwo.bounds.height / 2
+            origin = .init(x: xPoint, y: yPoint)
+            size = .init(width: stackButtonLineTwo.bounds.width, height: 2)
+            superView = stackButtonLineTwo
+            view = VerticalLineView(frame: .init(origin: origin, size: size))
+        case [7,8,9]:
+            xPoint = 0.0
+            yPoint = stackButtonLineThree.bounds.height / 2
+            origin = .init(x: xPoint, y: yPoint)
+            size = .init(width: stackButtonLineThree.bounds.width, height: 2)
+            superView = stackButtonLineThree
+            view = VerticalLineView(frame: .init(origin: origin, size: size))
+        case [1,4,7]:
+            xPoint = playingFild.bounds.width / 5
+            yPoint = 0.0
+            origin = .init(x: xPoint, y: yPoint)
+            size = .init(width: 2, height: playingFild.bounds.width)
+            superView = playingFild
+            view = HorisontalLineView(frame: .init(origin: origin, size: size))
+        case [2,5,8]:
+            xPoint = playingFild.bounds.width / 2
+            yPoint = 0.0
+            origin = .init(x: xPoint, y: yPoint)
+            size = .init(width: 2, height: playingFild.bounds.width)
+            superView = playingFild
+            view = HorisontalLineView(frame: .init(origin: origin, size: size))
+        case [3,6,9]:
+            xPoint = 9 * playingFild.bounds.width / 11
+            yPoint = 0.0
+            origin = .init(x: xPoint, y: yPoint)
+            size = .init(width: 2, height: playingFild.bounds.width)
+            superView = playingFild
+            view = HorisontalLineView(frame: .init(origin: origin, size: size))
+        case [1,5,9]:
+            xPoint = 0.0
+            yPoint = 0.0
+            origin = .init(x: xPoint, y: yPoint)
+            size = playingFild.bounds.size
+            superView = playingFild
+            view = DiagonaRightlLineView(frame: .init(origin: origin, size: size))
+        case [3,5,7]:
+            xPoint = 0.0
+            yPoint = 0.0
+            origin = .init(x: xPoint, y: yPoint)
+            size = playingFild.bounds.size
+            superView = playingFild
+            view = DiagonaLeftlLineView(frame: .init(origin: origin, size: size))
+        default:
+            break
+        }
+        guard let superView, let view else { return }
+        superView.addSubview(view)
+    }
+    
 }
 
+#Preview {
+    GameVC(gameSettings: .init(isSinglePlayer: true, gameTime: 60))
+}

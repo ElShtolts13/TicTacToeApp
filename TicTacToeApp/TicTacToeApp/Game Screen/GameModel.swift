@@ -21,6 +21,8 @@ final class GameModel {
         }
     }
     
+    var winCombination: [Int] = []
+    
     // MARK: - Private properties
     
     private let isGameWithAI: Bool
@@ -118,6 +120,9 @@ final class GameModel {
                 combinationResult = combinationResult && result
             }
             firstMatch = firstMatch || combinationResult
+            if combinationResult {
+                winCombination = combination
+            }
         }
         return firstMatch
     }
@@ -127,7 +132,6 @@ final class GameModel {
         case .easy, .medium, .hard:
             // Самая легкая сложность - возвращаем рандомный свободный сегмент
             let indexes = currentGameState.enumerated().filter { $0.element == "" }
-            print(indexes.map { $0.offset })
             return indexes.randomElement()?.offset
 //        case :
 //            // В зависимотси от сложности будем выбирать следующий ход
