@@ -34,7 +34,6 @@ class GameVC: UIViewController {
         let label = UILabel()
         label.text = "Player One"
         label.translatesAutoresizingMaskIntoConstraints = false
-        //        label.font = .boldSystemFont(ofSize: 16)
         label.font = .SFProDisplay.bold.size(of: 16)
         return label
     }()
@@ -245,7 +244,7 @@ class GameVC: UIViewController {
                     labelTimerGame.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                     labelTimerGame.topAnchor.constraint(equalTo: view.topAnchor, constant: 152),
                     stackPlayerMove.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                    stackPlayerMove.topAnchor.constraint(equalTo: labelTimerGame.bottomAnchor, constant: 69),
+                    stackPlayerMove.topAnchor.constraint(equalTo: stackView1.bottomAnchor, constant: 30),
                     playingFild.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                     playingFild.topAnchor.constraint(equalTo: stackPlayerMove.bottomAnchor, constant: 30)
 
