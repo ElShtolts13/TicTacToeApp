@@ -311,8 +311,10 @@ class GameVC: UIViewController {
                     $0.setImage(nil, for: .normal)
                 }
             }
-//            navigationController?.pushViewController(resultVC, animated: true)
             drawLine(for: model.winCombination)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                self?.navigationController?.pushViewController(resultVC, animated: true)
+            }
             print(model.winCombination)
         } else {
             if isGameWithAI, playerMove == 2 {
@@ -357,7 +359,7 @@ class GameVC: UIViewController {
         } else {
             self.timer.invalidate()
             let resultVC = ResultVC(inputResult: GameResult.draw)
-            navigationController?.pushViewController(resultVC, animated: true)
+//            navigationController?.pushViewController(resultVC, animated: true)
         }
 
     }
