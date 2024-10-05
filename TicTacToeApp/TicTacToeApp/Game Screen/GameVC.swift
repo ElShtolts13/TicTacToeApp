@@ -15,6 +15,7 @@ class GameVC: UIViewController {
     var model: GameModel
     var timerGame: Double
     let isGameWithAI: Bool
+    let difficulty: Difficulty
     //-----------------
     //как передадут стек картинок?
     
@@ -160,6 +161,7 @@ class GameVC: UIViewController {
     init(gameSettings: SelectGameSettings) {
         self.isGameWithAI = gameSettings.isSinglePlayer
         self.timerGame = gameSettings.gameTime
+        self.difficulty = gameSettings.difficulty
         self.model = GameModel(isGameWithAI: gameSettings.isSinglePlayer, playerIsFirst: true, difficult: gameSettings.difficulty)
         super.init(nibName: nil, bundle: nil)
     }
@@ -284,7 +286,9 @@ class GameVC: UIViewController {
     }
     
     @objc func tapButton(sender: UIButton) {
-        print(sender)
+        if !isGameWithAI {
+            guard model.canMove(at: sender.tag - 1) else { return }
+        }
         switch playerMove {
         case 1:
             sender.setImage(PlayerMove.Image.X, for: .normal)
@@ -302,6 +306,13 @@ class GameVC: UIViewController {
         
         if let result = model.checkWinner() {
             let resultVC = ResultVC(inputResult: result)
+            resultVC.backWasTap = { [weak self] in
+                guard let self else { return }
+                model.resetGame(with: playerMove.isMultiple(of: 2))
+                buttons.forEach {
+                    $0.setImage(nil, for: .normal)
+                }
+            }
             navigationController?.pushViewController(resultVC, animated: true)
         } else {
             if isGameWithAI, playerMove == 2 {

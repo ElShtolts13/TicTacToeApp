@@ -16,6 +16,7 @@ class ResultVC: UIViewController {
     // входные  данные результата игры - draw, win, lose
     
     let inputResult: GameResult
+    var backWasTap: (() -> Void)?
     
     //------------------------
     
@@ -175,6 +176,7 @@ extension ResultVC {
         navigationController?.popViewController(animated: true)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         print("User tap \(String(describing: sender.currentTitle))")
+        backWasTap?()
         //  переход в зависимости от выбора пользователя
     }
     

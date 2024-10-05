@@ -59,9 +59,13 @@ final class GameModel {
     }
     
     // MARK: - Public methods
+    
+    func canMove(at index: Int) -> Bool {
+        (0..<9).contains(index) && currentGameState[index] == ""
+    }
 
     func move(at index: Int) {
-        guard (0..<9).contains(index), currentGameState[index] == "" else {
+        guard canMove(at: index) else {
             return
         }
         currentGameState[index] = currentPlayer
@@ -80,9 +84,9 @@ final class GameModel {
         return .draw
     }
     
-    func resetGame() {
+    func resetGame(with state: Bool) {
         currentGameState = Array(repeating: "", count: 9)
-        counter = 0
+        counter = state ? 1 : 0
     }
     
     // MARK: - Private methods
