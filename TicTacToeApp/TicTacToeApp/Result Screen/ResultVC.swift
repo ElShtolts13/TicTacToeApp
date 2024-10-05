@@ -7,11 +7,15 @@
 
 import UIKit
 
+enum GameResult {
+    case win, lose, draw, firstWin, secondWin
+}
+
 class ResultVC: UIViewController {
     
     // входные  данные результата игры - draw, win, lose
     
-    let inputResault = "lose"
+    let inputResult: GameResult
     
     //------------------------
     
@@ -46,6 +50,17 @@ class ResultVC: UIViewController {
     
     private let stackButton = UIStackView()
     
+    //MARK: - Initialization
+    
+    init(inputResult: GameResult) {
+        self.inputResult = inputResult
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -63,14 +78,22 @@ class ResultVC: UIViewController {
         view.addSubview(imageResultGame)
         view.addSubview(stackButton)
         
-        switch inputResault {
-        case "win": labelResultGame.text = "Player One win!";
-                    imageResultGame.image = ResaultImage.win
-        case "lose": labelResultGame.text = "You Lose!";
-                    imageResultGame.image = ResaultImage.lose
-        case "draw": labelResultGame.text = "Draw!";
-                    imageResultGame.image = ResaultImage.draw
-        default: break
+        switch inputResult {
+        case .draw:
+            labelResultGame.text = "Draw!";
+            imageResultGame.image = ResaultImage.draw
+        case .win:
+            labelResultGame.text = "You win!";
+            imageResultGame.image = ResaultImage.win
+        case .lose:
+            labelResultGame.text = "You Lose!";
+            imageResultGame.image = ResaultImage.lose
+        case .firstWin:
+            labelResultGame.text = "Player One win!";
+            imageResultGame.image = ResaultImage.win
+        case .secondWin:
+            labelResultGame.text = "Player Two win!";
+            imageResultGame.image = ResaultImage.win
         }
         
         createStackButton()
@@ -166,8 +189,4 @@ extension ResultVC {
         //  переход в зависимости от выбора пользователя
     }
 
-}
-@available(iOS 16.0, *)
-#Preview {
-    CustomNavigationController(rootViewController: ResultVC())
 }

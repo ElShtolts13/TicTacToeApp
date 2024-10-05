@@ -15,6 +15,12 @@ final class GameModel {
         var score: Int
     }
     
+    var currentIndex: Int = 0 {
+        didSet {
+            print(currentGameState)
+        }
+    }
+    
     // MARK: - Private properties
     
     private let isGameWithAI: Bool
@@ -56,13 +62,22 @@ final class GameModel {
 
     func move(at index: Int) {
         guard (0..<9).contains(index), currentGameState[index] == "" else {
-            print(currentGameState)
             return
         }
         currentGameState[index] = currentPlayer
-        print(currentGameState)
-        checkWinner()
+        counter += 1
+        currentIndex = index
         checkNextMove()
+    }
+    
+    func checkWinner() -> GameResult? {
+        if checkWinnig(for: firstPlayer) {
+            return .firstWin
+        } else if checkWinnig(for: secondPLayer) {
+            return .secondWin
+        }
+        guard currentGameState.filter({ $0 == "" }).isEmpty else { return nil }
+        return .draw
     }
     
     func resetGame() {
@@ -78,7 +93,6 @@ final class GameModel {
             return
         }
         guard isGameWithAI else {
-            counter += 1
             return
         }
         moveWithAI()
@@ -88,7 +102,7 @@ final class GameModel {
         guard isGameWithAI, let index = getMoveAI() else { return }
         currentGameState[index] = secondPLayer
         counter += 1
-        print(currentGameState)
+        currentIndex = index
     }
     
     private func checkWinnig(for player: String) -> Bool {
@@ -104,34 +118,30 @@ final class GameModel {
         return firstMatch
     }
     
-    private func checkWinner() {
-        if checkWinnig(for: currentPlayer) {
-            print("\(currentPlayer) IS WIN!!!")
-        }
-    }
-    
     private func getMoveAI() -> Int? {
         switch difficult {
-        case .easy:
+        case .easy, .medium, .hard:
             // Самая легкая сложность - возвращаем рандомный свободный сегмент
             let indexes = currentGameState.enumerated().filter { $0.element == "" }
+            print(indexes.map { $0.offset })
             return indexes.randomElement()?.offset
-        case .medium, .hard:
-            // В зависимотси от сложности будем выбирать следующий ход
-            let moves = getAIMoves()
-            if moves.first?.score == 100 {
-                return moves.first?.index
-            } else if moves.first?.score == 80 {
-                var move: AIMove = .init(index: 0, score: 0)
-                moves.forEach {
-                    if $0.score > move.score {
-                        move = $0
-                    }
-                }
-                return move.index
-            } else {
-                return 0
-            }
+//        case :
+//            // В зависимотси от сложности будем выбирать следующий ход
+//            let moves = getAIMoves()
+//            if moves.first?.score == 100 {
+//                return moves.first?.index
+//            } else if moves.first?.score == 80 {
+//                var move: AIMove = .init(index: 0, score: 0)
+//                moves.forEach {
+//                    if $0.score > move.score {
+//                        move = $0
+//                    }
+//                }
+//                return move.index
+//            } else {
+//                let indexes = currentGameState.enumerated().filter { $0.element == "" }
+//                return indexes.randomElement()?.offset
+//            }
         }
     }
     
