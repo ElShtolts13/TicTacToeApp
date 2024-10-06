@@ -16,6 +16,7 @@ class GameVC: UIViewController {
     var gameTime: Double
     let isGameWithAI: Bool
     let difficulty: Difficulty
+    var timerOnOff = UserDefaults.standard.bool(forKey: "timerOnOff")
     //-----------------
     //как передадут стек картинок?
     
@@ -198,7 +199,7 @@ class GameVC: UIViewController {
         view.addSubview(stackView1)
         view.addSubview(stackView2)
         view.addSubview(playingFild)
-        view.addSubview(labelTimerGame)
+        
         
         createFild(stack: stackButtonLineOne, line: tagButtonLineOne)
         createFild(stack: stackButtonLineTwo, line: tagButtonLineTwo)
@@ -241,14 +242,19 @@ class GameVC: UIViewController {
                     stackView1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
                     stackView2.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
                     stackView2.topAnchor.constraint(equalTo: view.topAnchor, constant: 112),
-                    labelTimerGame.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                    labelTimerGame.topAnchor.constraint(equalTo: view.topAnchor, constant: 152),
+//                    labelTimerGame.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//                    labelTimerGame.topAnchor.constraint(equalTo: view.topAnchor, constant: 152),
                     stackPlayerMove.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                     stackPlayerMove.topAnchor.constraint(equalTo: stackView1.bottomAnchor, constant: 30),
                     playingFild.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                     playingFild.topAnchor.constraint(equalTo: stackPlayerMove.bottomAnchor, constant: 30)
 
                 ])
+        if timerOnOff {
+            view.addSubview(labelTimerGame)
+            labelTimerGame.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            labelTimerGame.topAnchor.constraint(equalTo: view.topAnchor, constant: 152).isActive = true
+        }
     }
     
     
@@ -345,7 +351,9 @@ class GameVC: UIViewController {
     }
         
     private func timerGame() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerUdate), userInfo: nil, repeats: true)
+        if timerOnOff {
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerUdate), userInfo: nil, repeats: true)
+        }
     }
     
     @objc func timerUdate() {
@@ -354,7 +362,6 @@ class GameVC: UIViewController {
             let minutes = Int(tempTimerGame / 60)
             let seconds = Int(tempTimerGame % 60)
             labelTimerGame.text = String( format: "%02d:%02d", minutes, seconds )
-//            print("\(minutes):\(seconds)")
         } else {
             self.timer.invalidate()
             let resultVC = ResultVC(inputResult: GameResult.draw)
@@ -436,6 +443,6 @@ class GameVC: UIViewController {
     
 }
 
-#Preview {
-    GameVC(gameSettings: .init(isSinglePlayer: true, gameTime: 60))
-}
+//#Preview {
+//    GameVC(gameSettings: .init(isSinglePlayer: true, gameTime: 60))
+//}
