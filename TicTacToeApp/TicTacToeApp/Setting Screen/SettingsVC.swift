@@ -138,11 +138,13 @@ class SettingsVC: UIViewController {
         titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         titleLabel.text = "Game Time"
         titleLabel.textColor = .black
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         switchControl = UISwitch()
         switchControl.isOn = false
         switchControl.onTintColor = AppColors.basicBlue
         switchControl.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
+        switchControl.translatesAutoresizingMaskIntoConstraints = false
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, switchControl])
         stackView.axis = .horizontal
@@ -172,9 +174,11 @@ class SettingsVC: UIViewController {
         titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         titleLabel.text = "Duration"
         titleLabel.textColor = .black
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         let lineView = UIView()
         lineView.backgroundColor = .lightGray
+        lineView.translatesAutoresizingMaskIntoConstraints = false
         lineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
 
         let buttonStackView = UIStackView()
@@ -189,12 +193,14 @@ class SettingsVC: UIViewController {
             button.backgroundColor = .clear
             button.tag = duration
             button.addTarget(self, action: #selector(durationButtonTapped(_:)), for: .touchUpInside)
+            button.translatesAutoresizingMaskIntoConstraints = false
             buttonStackView.addArrangedSubview(button)
         }
         
         buttonStackView.axis = .vertical
         buttonStackView.spacing = 10
         buttonStackView.distribution = .fillEqually
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
 
         let stackView = UIStackView(arrangedSubviews: [titleLabel, lineView, buttonStackView])
         stackView.axis = .vertical
@@ -246,6 +252,7 @@ class SettingsVC: UIViewController {
         button.backgroundColor = AppColors.basicLightBlue
         button.layer.cornerRadius = 20
         button.tag = index // Устанавливаем тег для идентификации кнопки
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.heightAnchor.constraint(equalToConstant: 39).isActive = true
         
         buttons.append(button) //первая кнопка не сбрасывалась
@@ -315,11 +322,20 @@ class SettingsVC: UIViewController {
         
         selectedButtonIndex = sender.tag // запоминаем индекс нажатой кнопки
         
-        if selectedIcons.count < 2 {
-            selectedIcons.append(imageNames[selectedButtonIndex! * 2])
-            selectedIcons.append(imageNames[selectedButtonIndex! * 2 + 1])
-            saveSettings()
+        let selectedFirstIcon = imageNames[selectedButtonIndex! * 2]
+        let selectedSecondIcon = imageNames[selectedButtonIndex! * 2 + 1]
+        
+        if selectedIcons.count >= 2 {
+            selectedIcons[0] = selectedFirstIcon
+            selectedIcons[1] = selectedSecondIcon
+        } else {
+            selectedIcons.append(selectedFirstIcon)
+            selectedIcons.append(selectedSecondIcon)
         }
+        
+        saveSettings()
+        
+        print("Selected icons: \(selectedIcons)")
     }
     
     @objc func switchValueChanged(_ sender: UISwitch) {
