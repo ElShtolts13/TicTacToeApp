@@ -23,6 +23,7 @@ class GameVC: UIViewController {
     //-----------------
     
     var tempTimerGame = Int(UserDefaults.standard.integer(forKey: "selectedTime")) * 60
+    var gameLine: UIView?
     
     var timer = Timer()
     var playerMove = 1
@@ -247,8 +248,9 @@ class GameVC: UIViewController {
                     stackPlayerMove.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                     stackPlayerMove.topAnchor.constraint(equalTo: stackView1.bottomAnchor, constant: 30),
                     playingFild.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                    playingFild.topAnchor.constraint(equalTo: stackPlayerMove.bottomAnchor, constant: 30)
-
+                    playingFild.topAnchor.constraint(equalTo: stackPlayerMove.bottomAnchor, constant: 30),
+                    moveImage.heightAnchor.constraint(equalToConstant: 54),
+                    moveImage.widthAnchor.constraint(equalToConstant: 54)
                 ])
         if timerOnOff {
             view.addSubview(labelTimerGame)
@@ -315,9 +317,11 @@ class GameVC: UIViewController {
                 buttons.forEach {
                     $0.setImage(nil, for: .normal)
                 }
+                gameLine?.removeFromSuperview()
+                gameLine = nil
             }
             drawLine(for: model.winCombination)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                 self?.navigationController?.pushViewController(resultVC, animated: true)
             }
             print(model.winCombination)
@@ -427,6 +431,7 @@ class GameVC: UIViewController {
             size = playingFild.bounds.size
             superView = playingFild
             view = DiagonaRightlLineView(frame: .init(origin: origin, size: size))
+            view?.backgroundColor = .clear
         case [3,5,7]:
             xPoint = 0.0
             yPoint = 0.0
@@ -434,15 +439,17 @@ class GameVC: UIViewController {
             size = playingFild.bounds.size
             superView = playingFild
             view = DiagonaLeftlLineView(frame: .init(origin: origin, size: size))
+            view?.backgroundColor = .clear
         default:
             break
         }
         guard let superView, let view else { return }
         superView.addSubview(view)
+        gameLine = view
     }
     
 }
 
-//#Preview {
-//    GameVC(gameSettings: .init(isSinglePlayer: true, gameTime: 60))
-//}
+#Preview {
+    GameVC(gameSettings: .init(isSinglePlayer: true, gameTime: 60))
+}

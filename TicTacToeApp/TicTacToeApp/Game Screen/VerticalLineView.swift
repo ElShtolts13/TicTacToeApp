@@ -26,8 +26,8 @@ final class HorisontalLineView: UIView {
         let path = UIBezierPath()
         path.move(to: rect.origin)
         path.addLine(to: .init(x: rect.minX, y: rect.maxY))
-        path.lineWidth = 2
-        UIColor.black.setStroke()
+        path.lineWidth = 5
+        AppColors.secondaryPurple.setStroke()
         path.stroke()
     }
     
@@ -36,14 +36,12 @@ final class HorisontalLineView: UIView {
 final class DiagonaRightlLineView: UIView {
     
     override func draw(_ rect: CGRect) {
-        backgroundColor = .white
-        
-//        let path = UIBezierPath()
-//        path.move(to: rect.origin)
-//        path.addLine(to: .init(x: rect.maxX, y: rect.maxY))
-//        path.lineWidth = 2
-//        UIColor.black.setStroke()
-//        path.stroke()
+        let path = UIBezierPath()
+        path.move(to: rect.origin)
+        path.addLine(to: .init(x: rect.maxX, y: rect.maxY))
+        path.lineWidth = 5
+        AppColors.secondaryPurple.setStroke()
+        path.stroke()
     }
     
 }
@@ -51,14 +49,12 @@ final class DiagonaRightlLineView: UIView {
 final class DiagonaLeftlLineView: UIView {
     
     override func draw(_ rect: CGRect) {
-        backgroundColor = .white
-        
-//        let path = UIBezierPath()
-//        path.move(to: .init(x: rect.maxX, y: rect.minY))
-//        path.addLine(to: .init(x: rect.minX, y: rect.maxY))
-//        path.lineWidth = 2
-//        UIColor.black.setStroke()
-//        path.stroke()
+        let path = UIBezierPath()
+        path.move(to: .init(x: rect.maxX, y: rect.minY))
+        path.addLine(to: .init(x: rect.minX, y: rect.maxY))
+        path.lineWidth = 5
+        AppColors.secondaryPurple.setStroke()
+        path.stroke()
     }
     
 }
