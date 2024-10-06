@@ -129,55 +129,83 @@ final class GameModel {
     
     private func getMoveAI() -> Int? {
         switch difficult {
-        case .easy, .medium, .hard:
+        case .easy:
             // Самая легкая сложность - возвращаем рандомный свободный сегмент
             let indexes = currentGameState.enumerated().filter { $0.element == "" }
             return indexes.randomElement()?.offset
-//        case :
-//            // В зависимотси от сложности будем выбирать следующий ход
-//            let moves = getAIMoves()
-//            if moves.first?.score == 100 {
-//                return moves.first?.index
-//            } else if moves.first?.score == 80 {
-//                var move: AIMove = .init(index: 0, score: 0)
-//                moves.forEach {
-//                    if $0.score > move.score {
-//                        move = $0
-//                    }
-//                }
-//                return move.index
-//            } else {
-//                let indexes = currentGameState.enumerated().filter { $0.element == "" }
-//                return indexes.randomElement()?.offset
-//            }
+        case .hard, .medium:
+            // В зависимотси от сложности будем выбирать следующий ход
+            let moves = getAIMoves(for: currentGameState, counter: counter)
+            if moves.first?.score == 100 {
+                return moves.first?.index
+            } else if moves.first?.score == 80 {
+                return moves.randomElement()?.index
+            } else if let move = moves.first, move.score < 0 {
+                return move.index
+            } else if let move = moves.first, move.score > 0 {
+                return move.index
+            } else {
+                let indexes = currentGameState.enumerated().filter { $0.element == "" }
+                return indexes.randomElement()?.offset
+            }
         }
     }
     
-    private func getAIMoves() -> [AIMove] {
+    private func getAIMoves(for state: [String], counter: Int) -> [AIMove] {
         // Возвращаем массив ходов
-        guard currentGameState[4] != "" else { return [.init(index: 4, score: 100)] } // Проверяем центральный сегмент
-        guard currentGameState[0] != "", currentGameState[2] != "", currentGameState[6] != "", currentGameState[8] != "" else { return [.init(index: 0, score: 80), // Проверяем угловые сегменты
-                                                                                                                                        .init(index: 2, score: 80),
-                                                                                                                                        .init(index: 6, score: 80),
-                                                                                                                                        .init(index: 8, score: 80)]}
+        
+        guard state[4] != "" else { return [.init(index: 4, score: 100)] } // Проверяем центральный сегмент
+//        guard state[0] != "" else { return [.init(index: 0, score: 80)] }
+//        guard state[2] != "" else { return [.init(index: 2, score: 80)] }
+//        guard state[6] != "" else { return [.init(index: 6, score: 80)] }
+//        guard state[8] != "" else { return [.init(index: 8, score: 80)] }
         
         // Будут ходы в зависимости от сложности
+        
+        var counter = counter
+        var currentPlayer: String {
+            if counter.isMultiple(of: 2) {
+                firstPlayer
+            } else {
+                secondPLayer
+            }
+        }
         var moves = [AIMove]()
+        var newState = state
+        let indexes = state.enumerated().filter { $0.element == "" }.map { $0.offset }
+        
+        indexes.forEach { index in
+            guard (0..<9).contains(index) && state[index] == "" else { return }
+            newState[index] = currentPlayer
+            counter += 1
+            var score = 0
+            
+            switch checkWinner() {
+            case .secondWin:
+                score += 10
+                moves.append(AIMove.init(index: index, score: score))
+            case .firstWin:
+                score -= 10
+                moves.append(AIMove.init(index: index, score: score))
+            case .draw:
+                moves = getAIMoves(for: newState, counter: counter)
+            default:
+                break
+            }
+        }
         
         return moves
     }
     
 }
-let imageIcon = UserDefaults.standard.array(forKey: "selectedIcons") as? [String] ?? ["Cross", "Nought"]
+
 struct PlayerMove {
     
-    let playerImage: Image?
-    let playerName = String()
-    
-    enum Image {
-//        static let X = UIImage(named: "Cross")
-//        static let O = UIImage(named: "Nought")
-        static let X = UIImage(named: imageIcon[0])
-        static let O = UIImage(named: imageIcon[1])
+    static var imageIcon: [String] {
+        UserDefaults.standard.array(forKey: "selectedIcons") as? [String] ?? ["Cross", "Nought"]
     }
+    
+    static var X: UIImage? { UIImage(named: imageIcon[0]) }
+    static var O: UIImage? { UIImage(named: imageIcon[1]) }
+
 }
