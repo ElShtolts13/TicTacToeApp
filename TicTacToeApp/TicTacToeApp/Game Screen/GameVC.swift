@@ -329,7 +329,6 @@ class GameVC: UIViewController {
                 self?.timer?.invalidate()
                 self?.timer = nil
             }
-            print(model.winCombination)
         } else {
             if isGameWithAI, playerMove == 2 {
                 let index = model.currentIndex
