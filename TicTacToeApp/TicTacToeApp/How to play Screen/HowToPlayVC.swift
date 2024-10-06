@@ -66,7 +66,7 @@ final class HowToPlayVC: UIViewController {
     }
 }
 
-@available(iOS 16.0, *)
-#Preview {
-    CustomNavigationController(rootViewController: HowToPlayVC())
-}
+//@available(iOS 16.0, *)
+//#Preview {
+//    CustomNavigationController(rootViewController: HowToPlayVC())
+//}

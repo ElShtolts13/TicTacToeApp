@@ -369,6 +369,6 @@ class SettingsVC: UIViewController {
     }
 }
 
-#Preview {
-    CustomNavigationController(rootViewController:SettingsVC())
-}
+//#Preview {
+//    CustomNavigationController(rootViewController:SettingsVC())
+//}

@@ -71,6 +71,6 @@ final class CellView: UIView {
         ])
     }
 }
-#Preview {
-    CellView(number: 2, text: "niihiфывфывфывфвыфвфвыфывфвфывфвыфывфывфывфвhiuhiuhui")
-}
+//#Preview {
+//    CellView(number: 2, text: "niihiфывфывфывфвыфвфвыфывфвфывфвыфывфывфывфвhiuhiuhui")
+//}

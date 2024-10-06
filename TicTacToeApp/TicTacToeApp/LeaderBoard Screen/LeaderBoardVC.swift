@@ -46,6 +46,6 @@ class LeaderBoardVC: UIViewController {
     }
 
 }
-#Preview {
-    CustomNavigationController(rootViewController: LeaderBoardVC())
-}
+//#Preview {
+//    CustomNavigationController(rootViewController: LeaderBoardVC())
+//}

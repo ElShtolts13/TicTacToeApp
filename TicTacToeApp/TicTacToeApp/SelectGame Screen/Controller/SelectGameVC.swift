@@ -165,6 +165,6 @@ class SelectGameVC: UIViewController {
     }
 }
 
-#Preview {
-    CustomNavigationController(rootViewController: SelectGameVC())
-}
+//#Preview {
+//    CustomNavigationController(rootViewController: SelectGameVC())
+//}

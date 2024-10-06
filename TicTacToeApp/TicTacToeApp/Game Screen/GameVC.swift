@@ -454,6 +454,6 @@ class GameVC: UIViewController {
     
 }
 
-#Preview {
-    GameVC(gameSettings: .init(isSinglePlayer: true, gameTime: 60))
-}
+//#Preview {
+//    GameVC(gameSettings: .init(isSinglePlayer: true, gameTime: 60))
+//}
