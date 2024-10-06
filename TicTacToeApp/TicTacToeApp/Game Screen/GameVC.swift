@@ -25,7 +25,7 @@ class GameVC: UIViewController {
     var tempTimerGame = Int(UserDefaults.standard.integer(forKey: "selectedTime")) * 60
     var gameLine: UIView?
     
-    var timer = Timer()
+    var timer: Timer?
     var playerMove = 1
     let tagButtonLineOne = [1, 2, 3]
     let tagButtonLineTwo = [4, 5, 6]
@@ -194,6 +194,7 @@ class GameVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = ""
+        timerUdate()
     }
     
     func setupPlayingFild() {
@@ -319,10 +320,14 @@ class GameVC: UIViewController {
                 }
                 gameLine?.removeFromSuperview()
                 gameLine = nil
+                timerGame()
+                tempTimerGame = Int(UserDefaults.standard.integer(forKey: "selectedTime")) * 60
             }
             drawLine(for: model.winCombination)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                 self?.navigationController?.pushViewController(resultVC, animated: true)
+                self?.timer?.invalidate()
+                self?.timer = nil
             }
         } else {
             if isGameWithAI, playerMove == 2 {
@@ -366,9 +371,9 @@ class GameVC: UIViewController {
             let seconds = Int(tempTimerGame % 60)
             labelTimerGame.text = String( format: "%02d:%02d", minutes, seconds )
         } else {
-            self.timer.invalidate()
+            self.timer?.invalidate()
             let resultVC = ResultVC(inputResult: GameResult.draw)
-//            navigationController?.pushViewController(resultVC, animated: true)
+            navigationController?.pushViewController(resultVC, animated: true)
         }
 
     }

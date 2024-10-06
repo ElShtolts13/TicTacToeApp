@@ -200,12 +200,17 @@ final class GameModel {
 }
 
 struct PlayerMove {
-    
     static var imageIcon: [String] {
-        UserDefaults.standard.array(forKey: "selectedIcons") as? [String] ?? ["Cross", "Nought"]
+        let arrey = UserDefaults.standard.array(forKey: "selectedIcons") as? [String] ?? ["Cross", "Nought"]
+        print(arrey)
+        return arrey
+    }
+    static var X: UIImage? {
+        .init(named: imageIcon[0])
+    }
+    static var O: UIImage? {
+        .init(named: imageIcon[1])
     }
     
-    static var X: UIImage? { UIImage(named: imageIcon[0]) }
-    static var O: UIImage? { UIImage(named: imageIcon[1]) }
 
 }
