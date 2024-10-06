@@ -19,13 +19,13 @@
 <img src="https://img.shields.io/badge/ElShtolts13-pink"/></a>
 <a href="https://github.com/MaximGoryachkin">
 <img src="https://img.shields.io/badge/MaximGoryachkin-red"/></a>
-<a href="https://https://github.com/Phan56">
+<a href="https://github.com/Phan56">
 <img src="https://img.shields.io/badge/Phan56-green"/></a>
-<a href="https://https://github.com/Suharik001">
+<a href="https://github.com/Suharik001">
 <img src="https://img.shields.io/badge/Suharik001-blue"/></a>
-<a href="https://https://github.com/oiau">
+<a href="https://github.com/oiau">
 <img src="https://img.shields.io/badge/oiau-purple"/></a>
-<a href="https://https:https://github.com/salfetkafive">
+<a href="https://github.com/salfetkafive">
 <img src="https://img.shields.io/badge/salfetkafive-yellow"/></a>
 </p>
 
