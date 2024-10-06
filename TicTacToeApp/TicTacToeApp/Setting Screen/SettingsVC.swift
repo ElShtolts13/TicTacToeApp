@@ -15,6 +15,7 @@ class SettingsVC: UIViewController {
     var durationView: UIView!
     var switchControl: UISwitch!
     var selectedIcons: [String] = []
+    var buttonsStack: UIStackView?
 //    var timerOnOff: Bool {
 //        if UserDefaults.standard.bool(forKey: "timerOnOff") {
 //            false
@@ -134,6 +135,24 @@ class SettingsVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Settings"
+        
+        switchValueChanged(switchControl)
+        
+        let time = UserDefaults.standard.integer(forKey: "selectedTime")
+        buttonsStack?.arrangedSubviews.forEach { view in
+            if let button = view as? UIButton {
+                if button.tag == time {
+                    durationButtonTapped(button)
+                }
+            }
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if UserDefaults.standard.value(forKey: "selectedTime") == nil {
+            UserDefaults.standard.set(false, forKey: "timerOnOff")
+        }
     }
     // MARK: Верхние блоки
     func createGameTimeView() -> UIView {
@@ -192,6 +211,7 @@ class SettingsVC: UIViewController {
 
         let buttonStackView = UIStackView()
         let durations = [1, 2, 5]
+        buttonsStack = buttonStackView
 
         for duration in durations {
             let button = UIButton(type: .system)
