@@ -13,8 +13,7 @@ extension UIButton {
     /// - Parameters:
     ///   - icon: Имя изображения, которое будет использоваться в кнопке. По умолчанию - пустая строка (без изображения).
     ///   - title: Заголовок кнопки.
-    ///   - fontSize: Размер шрифта заголовка кнопки. По умолчанию - 20.
-    ///   - fontWeight: Вес шрифта заголовка кнопки. По умолчанию - `.bold`.
+    ///   - uiFont: Размер и наименование шрифта заголовка кнопки. По умолчанию - .systemFont, размер - 20.
     ///   - foregroundColor: Цвет текста кнопки. По умолчанию - `.label`.
     ///   - backgroundColor: Фоновый цвет кнопки. По умолчанию - `.systemGray6`.
     ///   - cornerRadius: Радиус скругления углов кнопки. По умолчанию - 30.
@@ -28,8 +27,7 @@ extension UIButton {
     static func createButton(
         icon: String = "",
         title: String,
-        fontSize: CGFloat = 20,
-        fontWeight: UIFont.Weight = .bold,
+        uiFont: UIFont = .systemFont(ofSize: 20),
         foregroundColor: UIColor = .label,
         backgroundColor: UIColor = .systemGray6,
         cornerRadius: CGFloat = 30,
@@ -48,10 +46,11 @@ extension UIButton {
 
         // Настройка текста
         config.title = title
-
+        
         // Настройка шрифта
-        let font = UIFont.systemFont(ofSize: fontSize, weight: fontWeight)
-        config.attributedTitle = AttributedString(title, attributes: AttributeContainer([.font: font]))
+        config.attributedTitle = AttributedString(title, attributes: AttributeContainer([.font: uiFont]))
+
+
 
         // Настройка изображения
         if !icon.isEmpty,  let image = UIImage(named: icon) {
