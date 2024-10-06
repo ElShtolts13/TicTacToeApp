@@ -180,7 +180,7 @@ class GameVC: UIViewController {
         view.backgroundColor = AppColors.background
         
         print("\(gameTime)")
-        
+        print(tempTimerGame, timerOnOff)
         setupPlayingFild()
         configPlayersMove()
         setupConstrein()
@@ -365,6 +365,7 @@ class GameVC: UIViewController {
     }
     
     @objc func timerUdate() {
+        guard timerOnOff else { return }
         if tempTimerGame != 0 {
             tempTimerGame -= 1
             let minutes = Int(tempTimerGame / 60)
