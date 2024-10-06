@@ -69,7 +69,7 @@ class GameVC: UIViewController {
     let imagePlayerOne: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 30
-        image.image = PlayerMove.Image.X
+        image.image = PlayerMove.X
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -77,7 +77,7 @@ class GameVC: UIViewController {
     let imagePlayerTwo: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 30
-        image.image = PlayerMove.Image.O
+        image.image = PlayerMove.O
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -290,9 +290,9 @@ class GameVC: UIViewController {
         }
         switch playerMove {
         case 1:
-            sender.setImage(PlayerMove.Image.X, for: .normal)
+            sender.setImage(PlayerMove.X, for: .normal)
         case 2:
-            sender.setImage(PlayerMove.Image.O, for: .normal)
+            sender.setImage(PlayerMove.O, for: .normal)
         default: break
         }
         model.move(at: sender.tag - 1)
@@ -324,7 +324,6 @@ class GameVC: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                 self?.navigationController?.pushViewController(resultVC, animated: true)
             }
-            print(model.winCombination)
         } else {
             if isGameWithAI, playerMove == 2 {
                 let index = model.currentIndex
@@ -339,9 +338,9 @@ class GameVC: UIViewController {
         
         if countPlayers == 2 {
             switch playerMove {
-            case 1: moveImage.image = PlayerMove.Image.X;
+            case 1: moveImage.image = PlayerMove.X;
                 laybelPlayerMove.text = "Player One Turn"
-            case 2: moveImage.image = PlayerMove.Image.O;
+            case 2: moveImage.image = PlayerMove.O;
                 laybelPlayerMove.text = "Player Two Turn"
             default: break
             }
