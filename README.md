@@ -15,7 +15,7 @@
 
 ### Created by:
 <p align="left"> 
-<a href="https://https://https://github.com/ElShtolts13">
+<a href="https://github.com/ElShtolts13">
 <img src="https://img.shields.io/badge/ElShtolts13-pink"/></a>
 <a href="https://github.com/MaximGoryachkin">
 <img src="https://img.shields.io/badge/MaximGoryachkin-red"/></a>
