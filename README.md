@@ -44,7 +44,7 @@ TicTacToe allows players to enjoy the familiar game in a fresh execution. You ca
 - Game Modes: Play against the computer or with a friend.
 - Computer Difficulty: Choose from three difficulty levels when playing against the computer: easy, medium, and hard.
 - Game Duration: Select the game duration from available options: 1, 2, or 5 minutes.
-- Icons: Customize your game by choosing one of 4 icon styles.
+- Icons: Customize your game by choosing one of 6 icon styles.
 
 ## Contributing
 
