@@ -1,4 +1,4 @@
-![image](https://github.com/ElShtolts13/TicTacToeApp/blob/main/ReadmeImg.tif)
+![image](https://github.com/ElShtolts13/TicTacToeApp/blob/main/ReadmeImg-ptif.jpg)
 
 # Tic-Tac-Toe App
 
