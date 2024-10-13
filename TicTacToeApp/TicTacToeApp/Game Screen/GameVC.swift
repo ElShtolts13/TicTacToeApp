@@ -188,10 +188,9 @@ class GameVC: UIViewController {
         setupConstrein()
         timerGame()
         
-        
         // Do any additional setup after loading the view.
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let customNavigationController = navigationController as? CustomNavigationController {
@@ -199,18 +198,25 @@ class GameVC: UIViewController {
                 self?.exitAlert()
             }
         }
+        
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = ""
         timerUdate()
     }
-                        
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if let customNavigationController = navigationController as? CustomNavigationController {
+            customNavigationController.popHandler = nil
+        }
+        timer?.invalidate()
+    }
+    
     func setupPlayingFild() {
         view.addSubview(stackView1)
         view.addSubview(stackView2)
         view.addSubview(playingFild)
         
-        
-                                                           
         createFild(stack: stackButtonLineOne, line: tagButtonLineOne)
         createFild(stack: stackButtonLineTwo, line: tagButtonLineTwo)
         createFild(stack: stackButtonLineThree, line: tagButtomLineThree)
@@ -334,9 +340,6 @@ class GameVC: UIViewController {
             drawLine(for: model.winCombination)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                 self?.navigationController?.pushViewController(resultVC, animated: true)
-                if let customNavigationController = self?.navigationController as? CustomNavigationController {
-                    customNavigationController.popHandler = nil
-                }
             }
         } else {
             if isGameWithAI, playerMove == 2 {
@@ -381,7 +384,6 @@ class GameVC: UIViewController {
             let seconds = Int(tempTimerGame % 60)
             labelTimerGame.text = String( format: "%02d:%02d", minutes, seconds )
         } else {
-            self.timer?.invalidate()
             let resultVC = ResultVC(inputResult: GameResult.draw)
             navigationController?.pushViewController(resultVC, animated: true)
         }

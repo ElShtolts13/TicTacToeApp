@@ -389,6 +389,7 @@ class SettingsVC: UIViewController {
     }
 }
 
-//#Preview {
-//    CustomNavigationController(rootViewController:SettingsVC())
-//}
+@available(iOS 17.0, *)
+#Preview {
+    CustomNavigationController(rootViewController:SettingsVC())
+}
