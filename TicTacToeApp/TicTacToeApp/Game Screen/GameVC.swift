@@ -177,10 +177,12 @@ class GameVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = AppColors.background
         
         print("\(gameTime)")
-        print(tempTimerGame, timerOnOff)
+        
+        
         setupPlayingFild()
         configPlayersMove()
         setupConstrein()
@@ -192,17 +194,23 @@ class GameVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if let customNavigationController = navigationController as? CustomNavigationController {
+            customNavigationController.popHandler = { [weak self] in
+                self?.exitAlert()
+            }
+        }
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = ""
         timerUdate()
     }
-    
+                        
     func setupPlayingFild() {
         view.addSubview(stackView1)
         view.addSubview(stackView2)
         view.addSubview(playingFild)
         
         
+                                                           
         createFild(stack: stackButtonLineOne, line: tagButtonLineOne)
         createFild(stack: stackButtonLineTwo, line: tagButtonLineTwo)
         createFild(stack: stackButtonLineThree, line: tagButtomLineThree)
@@ -326,8 +334,9 @@ class GameVC: UIViewController {
             drawLine(for: model.winCombination)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                 self?.navigationController?.pushViewController(resultVC, animated: true)
-                self?.timer?.invalidate()
-                self?.timer = nil
+                if let customNavigationController = self?.navigationController as? CustomNavigationController {
+                    customNavigationController.popHandler = nil
+                }
             }
         } else {
             if isGameWithAI, playerMove == 2 {
@@ -451,6 +460,20 @@ class GameVC: UIViewController {
         guard let superView, let view else { return }
         superView.addSubview(view)
         gameLine = view
+    }
+    func exitAlert() {
+        let alert = UIAlertController(title: "Точно выйти?", message: "Вы пытаетесь выйти из игры, в меню выбора режима игры.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Подтвердить выход", style: .default) {[weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default) {[weak self] _ in
+            if let customNavigationController = self?.navigationController as? CustomNavigationController {
+                customNavigationController.popHandler = { [weak self] in
+                    self?.exitAlert()
+                }
+            }
+        })
+        present(alert, animated: true)
     }
     
 }

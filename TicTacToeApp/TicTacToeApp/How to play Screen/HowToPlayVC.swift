@@ -8,7 +8,7 @@
 import UIKit
 
 final class HowToPlayVC: UIViewController {
-    
+        
     let scrollView = UIScrollView()
     let stackView = UIStackView()
 
@@ -30,6 +30,7 @@ final class HowToPlayVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "How to play"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     func configuration() {

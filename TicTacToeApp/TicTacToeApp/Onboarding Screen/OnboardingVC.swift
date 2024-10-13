@@ -68,7 +68,6 @@ class OnboardingVC: UIViewController {
                 navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingButton)
             }
 
-    
     func setupView() {
         
         view.addSubview(xoImage)
@@ -98,10 +97,11 @@ class OnboardingVC: UIViewController {
     @objc private func pressedRulesButton() {
             let rulesVC = HowToPlayVC()
             navigationController?.pushViewController(rulesVC, animated: true)
-            navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             print("RulesButton was pressed")
-
         }
+                                                           
+        
         @objc private func pressedSettingButton() {
             let settingsVC = SettingsVC()
             navigationController?.pushViewController(settingsVC, animated: true)
@@ -109,6 +109,7 @@ class OnboardingVC: UIViewController {
             print("SettingButton was pressed")
 
         }
+                                                           
         @objc private func pressedPlayButton() {
             let selectGameVC = SelectGameVC()
                 navigationController?.pushViewController(selectGameVC, animated: true)
@@ -117,6 +118,7 @@ class OnboardingVC: UIViewController {
             print("PlayButton was pressed")
 
         }
+                                              
 }
 @available(iOS 17.0, *)
 #Preview {

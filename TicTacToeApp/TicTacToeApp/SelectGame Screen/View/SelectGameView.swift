@@ -30,7 +30,6 @@ class SelectGameView: UIView {
     
 
      lazy var singlePlayerButton = UIButton.createButton(icon: "SinglePlayer", title: "Single Player")
-
      lazy var twoPlayersButton = UIButton.createButton(icon: "TwoPlayers", title: "Two Players")
      lazy var leaderboardButton = UIButton.createButton(icon: "LeaderBoard", title: "Leaderboard")
     

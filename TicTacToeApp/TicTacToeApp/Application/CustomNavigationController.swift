@@ -8,10 +8,20 @@
 import UIKit
 
 final class CustomNavigationController: UINavigationController {
-
+    
+    var popHandler: (() -> Void)?
+    
+    override func popViewController(animated: Bool) -> UIViewController?
+    {
+        popHandler?()
+        popHandler = nil
+        return super.popViewController(animated: animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAppearance()
+        
     }
     
     private func setupAppearance() {

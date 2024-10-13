@@ -19,7 +19,6 @@ class SelectGameVC: UIViewController {
     // MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         setupGameSelectionView()
     }
     
@@ -29,7 +28,6 @@ class SelectGameVC: UIViewController {
         view.backgroundColor = AppColors.background
         // Настраиваем представление для выбора игры при загрузке экрана
         setupNavigationBar()
-        
     }
     func setupNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: .backIcon, style: .plain, target: self, action: #selector (backButtonAction))
@@ -156,12 +154,11 @@ class SelectGameVC: UIViewController {
         // После выбора сложности запускаем игру
         startTicTacToeGame()
     }
-    
     // Метод для начала игры
     private func startTicTacToeGame() {
         let gameVC = GameVC(gameSettings: gameSettings!)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController?.pushViewController(gameVC, animated: true)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 }
 
